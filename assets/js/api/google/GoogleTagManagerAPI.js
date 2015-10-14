@@ -30,20 +30,16 @@ export default class GoogleTagManagerAPI {
                     return;
                 }
 
-                var fetchContainersSequential =
-                    response.accounts.reduce( ( prevReq, account ) => {
-                        return prevReq.then( () => {
-                            return this.fetchContainersByAccount( account )
-                                .then( containers => {
-                                    account.containers = containers;
-                                    accountsAndContainers.push( account );
-                                } );
+                Q.all( response.accounts.map( account =>{
+                    return this.fetchContainersByAccount( account )
+                        .then( containers =>{
+                            account.containers = containers;
+                            accountsAndContainers.push( account );
                         } );
-                }, Q() );
-
-                fetchContainersSequential.then( () => {
-                    resolve( accountsAndContainers );
-                } );
+                } ) )
+                    .then( () => {
+                        resolve( accountsAndContainers );
+                    } );
             } );
         } );
     }
