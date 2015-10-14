@@ -84,6 +84,7 @@ gulp.task( 'build', function( callback ){
 
 gulp.task( 'browserSync', function(){
     browserSync.init( {
+        files: '../public/**/*.*',
         server: {
             baseDir: '../public/',
             https: true

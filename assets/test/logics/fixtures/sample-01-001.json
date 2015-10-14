@@ -1,0 +1,106 @@
+{
+  "accountId": "116857585",
+  "containerId": "1474192",
+  "containerVersionId": "2",
+  "deleted": false,
+  "container": {
+    "accountId": "116857585",
+    "containerId": "1474192",
+    "name": "daikiueda.github.io",
+    "publicId": "GTM-WVRJKC",
+    "timeZoneCountryId": "US",
+    "timeZoneId": "America/Los_Angeles",
+    "notes": "",
+    "usageContext": [
+      "WEB"
+    ],
+    "fingerprint": "1440637878999",
+    "enabledBuiltInVariable": [
+      "PAGE_URL",
+      "PAGE_HOSTNAME",
+      "PAGE_PATH",
+      "REFERRER",
+      "EVENT"
+    ]
+  },
+  "tag": [
+    {
+      "accountId": "116857585",
+      "containerId": "1474192",
+      "tagId": "1",
+      "name": "Google Analytics",
+      "type": "ua",
+      "liveOnly": false,
+      "parameter": [
+        {
+          "type": "BOOLEAN",
+          "key": "enableEcommerce",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "setTrackerName",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "useHashAutoLink",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "doubleClick",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "useDebugVersion",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "decorateFormsAutoLink",
+          "value": "false"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "trackingId",
+          "value": "{{UAID}}"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "trackType",
+          "value": "TRACK_PAGEVIEW"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "enableLinkId",
+          "value": "false"
+        }
+      ],
+      "fingerprint": "1440637878998",
+      "firingTriggerId": [
+        "2147479553"
+      ],
+      "tagFiringOption": "ONCE_PER_EVENT"
+    }
+  ],
+  "fingerprint": "1440637904029",
+  "variable": [
+    {
+      "accountId": "116857585",
+      "containerId": "1474192",
+      "variableId": "1",
+      "name": "UAID",
+      "type": "c",
+      "parameter": [
+        {
+          "type": "TEMPLATE",
+          "key": "value",
+          "value": "UA-66438434-1"
+        }
+      ],
+      "fingerprint": "1440637878999"
+    }
+  ]
+}

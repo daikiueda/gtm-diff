@@ -1,0 +1,257 @@
+{
+  "accountId": "116857585",
+  "containerId": "1474192",
+  "containerVersionId": "4",
+  "deleted": false,
+  "container": {
+    "accountId": "116857585",
+    "containerId": "1474192",
+    "name": "daikiueda.github.io",
+    "publicId": "GTM-WVRJKC",
+    "timeZoneCountryId": "US",
+    "timeZoneId": "America/Los_Angeles",
+    "notes": "",
+    "usageContext": [
+      "WEB"
+    ],
+    "fingerprint": "1441678282574",
+    "enabledBuiltInVariable": [
+      "PAGE_URL",
+      "PAGE_HOSTNAME",
+      "PAGE_PATH",
+      "REFERRER",
+      "EVENT",
+      "CLICK_ELEMENT"
+    ]
+  },
+  "tag": [
+    {
+      "accountId": "116857585",
+      "containerId": "1474192",
+      "tagId": "1",
+      "name": "Google Analytics",
+      "type": "ua",
+      "liveOnly": false,
+      "parameter": [
+        {
+          "type": "BOOLEAN",
+          "key": "enableEcommerce",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "setTrackerName",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "useHashAutoLink",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "doubleClick",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "useDebugVersion",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "decorateFormsAutoLink",
+          "value": "false"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "trackingId",
+          "value": "{{UAID}}"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "trackType",
+          "value": "TRACK_PAGEVIEW"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "enableLinkId",
+          "value": "false"
+        }
+      ],
+      "fingerprint": "1440637878998",
+      "firingTriggerId": [
+        "2147479553"
+      ],
+      "tagFiringOption": "ONCE_PER_EVENT"
+    },
+    {
+      "accountId": "116857585",
+      "containerId": "1474192",
+      "tagId": "2",
+      "name": "TRACK CLICK div.test-1 a",
+      "type": "ua",
+      "liveOnly": false,
+      "parameter": [
+        {
+          "type": "BOOLEAN",
+          "key": "enableEcommerce",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "setTrackerName",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "doubleClick",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "useDebugVersion",
+          "value": "false"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "trackingId",
+          "value": "{{UAID}}"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "trackType",
+          "value": "TRACK_EVENT"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "nonInteraction",
+          "value": "false"
+        },
+        {
+          "type": "BOOLEAN",
+          "key": "enableLinkId",
+          "value": "false"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "eventLabel",
+          "value": "test"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "eventAction",
+          "value": "Test"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "eventCategory",
+          "value": "Test"
+        }
+      ],
+      "fingerprint": "1441678282574",
+      "firingTriggerId": [
+        "3"
+      ],
+      "tagFiringOption": "ONCE_PER_EVENT"
+    }
+  ],
+  "fingerprint": "1441678293433",
+  "trigger": [
+    {
+      "accountId": "116857585",
+      "containerId": "1474192",
+      "triggerId": "3",
+      "name": "EV CLICK div.test-1 a",
+      "type": "LINK_CLICK",
+      "filter": [
+        {
+          "type": "CSS_SELECTOR",
+          "parameter": [
+            {
+              "type": "TEMPLATE",
+              "key": "arg0",
+              "value": "{{Click Element}}"
+            },
+            {
+              "type": "TEMPLATE",
+              "key": "arg1",
+              "value": "div.test-1 a"
+            }
+          ]
+        }
+      ],
+      "autoEventFilter": [
+        {
+          "type": "CSS_SELECTOR",
+          "parameter": [
+            {
+              "type": "TEMPLATE",
+              "key": "arg0",
+              "value": "{{Click Element}}"
+            },
+            {
+              "type": "TEMPLATE",
+              "key": "arg1",
+              "value": "div.test-1 a"
+            }
+          ]
+        }
+      ],
+      "waitForTags": {
+        "type": "BOOLEAN",
+        "value": "true"
+      },
+      "checkValidation": {
+        "type": "BOOLEAN",
+        "value": "true"
+      },
+      "waitForTagsTimeout": {
+        "type": "TEMPLATE",
+        "value": "2000"
+      },
+      "uniqueTriggerId": {
+        "type": "TEMPLATE",
+        "value": ""
+      },
+      "fingerprint": "1441678082432"
+    }
+  ],
+  "variable": [
+    {
+      "accountId": "116857585",
+      "containerId": "1474192",
+      "variableId": "4",
+      "name": "DOM div.test-1 a",
+      "type": "d",
+      "parameter": [
+        {
+          "type": "TEMPLATE",
+          "key": "selectorType",
+          "value": "CSS"
+        },
+        {
+          "type": "TEMPLATE",
+          "key": "elementSelector",
+          "value": "div.test-1 a"
+        }
+      ],
+      "fingerprint": "1441677871743"
+    },
+    {
+      "accountId": "116857585",
+      "containerId": "1474192",
+      "variableId": "1",
+      "name": "UAID",
+      "type": "c",
+      "parameter": [
+        {
+          "type": "TEMPLATE",
+          "key": "value",
+          "value": "UA-66438434-1"
+        }
+      ],
+      "fingerprint": "1440637878999"
+    }
+  ]
+}
