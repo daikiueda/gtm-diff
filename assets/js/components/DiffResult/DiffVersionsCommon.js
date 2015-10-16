@@ -51,7 +51,7 @@ export default class DiffVersionsCommon extends Component {
         var sections = this.props.contents.map( ( content ) => {
             return (
                 <section className={content[ 0 ]? 'modified': 'notModified'}>
-                    <ElementName content={content} />
+                    <ElementName elementType={this.elementType} content={content} />
                     <table>
                         <tbody>
                             {this.createDataBody( content )}
