@@ -1,8 +1,8 @@
 const SETTINGS = {
     JS_LIBS: {
         SRC: [
-            //'./bower_components/react/react.js',
-            //'./bower_components/react/react-dom.js'
+            './bower_components/react/react.js',
+            './bower_components/react/react-dom.js'
         ],
         DEST: '../public/js',
         FILENAME: 'libs.js'
@@ -25,27 +25,25 @@ var del = require( 'del' ),
     plumber = require( 'gulp-plumber' ),
     concat = require( 'gulp-concat' ),
     uglify = require( 'gulp-uglify' ),
+    ghPages = require( 'gulp-gh-pages' ),
 
     sourcemaps = require( 'gulp-sourcemaps' ),
     browserify = require( 'browserify' ),
-    babelify = require( 'babelify' ),
     watchify = require( 'watchify' ),
 
     browserSync = require( 'browser-sync' ).create();
 
 
-var b = browserify( Object.assign(
-    {},
-    watchify.args,
-    {
-        debug: true,
-        entries: [ SETTINGS.JS.SRC ],
-        transform: [ [ 'babelify' ] ]
-    }
-) );
+var b = browserify( Object.assign( {}, watchify.args, {
+    debug: true,
+    entries: [ SETTINGS.JS.SRC ]
+} ) );
 
 function bundleJS(){
-    return b.bundle()
+    return b
+        .transform( 'babelify' )
+        .transform( 'browserify-shim', { global: true } )
+        .bundle()
         .on( 'error', function( err ){
             console.log( err.message );
             browserSync.notify( err.message, 3000 );
@@ -84,7 +82,6 @@ gulp.task( 'build', function( callback ){
 
 gulp.task( 'browserSync', function(){
     browserSync.init( {
-        files: '../public/**/*.*',
         server: {
             baseDir: '../public/',
             https: true
@@ -94,10 +91,13 @@ gulp.task( 'browserSync', function(){
     return gulp.watch( '../public/**/*.*' ).on( 'change', browserSync.reload );
 } );
 
-
 gulp.task( 'server', function( callback ){
     runSequence( 'build', 'build:js:watch', 'browserSync', callback  );
 } );
 
+gulp.task( 'gh-pages', function(){
+    return gulp.src( '../public/**/*' )
+        .pipe( ghPages() );
+} );
 
 gulp.task( 'default', [ 'build' ] );
