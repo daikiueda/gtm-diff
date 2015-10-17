@@ -10,3 +10,4 @@ assets/node_modules
 assets/.publish
 
 public/js
+public/css
