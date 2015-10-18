@@ -2,9 +2,7 @@ const SETTINGS = {
     JS_LIBS: {
         SRC: [
             './bower_components/react/react.js',
-            './bower_components/react/react-dom.js',
-
-            './node_modules/react-mdl/extra/material.js'
+            './bower_components/react/react-dom.js'
         ],
         DEST: '../public/js',
         FILENAME: 'libs.js'
@@ -81,8 +79,10 @@ gulp.task( 'build:js:watch', function(){
 gulp.task( 'build:jsLibs', function(){
     return gulp
         .src( SETTINGS.JS_LIBS.SRC )
+        .pipe( sourcemaps.init( {loadMaps: true} ) )
         .pipe( uglify() )
         .pipe( concat( SETTINGS.JS_LIBS.FILENAME ) )
+        .pipe( sourcemaps.write( './') )
         .pipe( gulp.dest( SETTINGS.JS_LIBS.DEST ) );
 } );
 

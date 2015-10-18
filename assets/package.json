@@ -4,7 +4,9 @@
   "description": "Google Tag Manager diff Diff.",
   "main": "gulp",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha"
+    "test": "node ./node_modules/mocha/bin/mocha",
+    "postinstall": "npm run build-meterial-ui",
+    "build-meterial-ui": "$(npm bin)/babel --stage 1 ./node_modules/material-ui/src --out-dir ./node_modules/material-ui/lib"
   },
   "repository": {
     "type": "git",

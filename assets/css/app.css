@@ -1,4 +1,8 @@
-@import "react-mdl/extra/material.css";
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+}
 
 section.notModified {
     display: none;
