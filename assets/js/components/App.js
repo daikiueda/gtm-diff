@@ -36,7 +36,7 @@ export default class App extends Component {
                     primary={true}
                     onMouseUp={() => dispatch(clearTagManagerContainerSelection())}
                     />;
-        dispatch(clearTagManagerContainerSelection());
+
         return this.props.isGoogleLoggedIn ?
             (
                 <div>
