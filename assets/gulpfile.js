@@ -11,12 +11,6 @@ const SETTINGS = {
         SRC: './js/app.js',
         DEST: '../public/js',
         FILENAME: 'app.js'
-    },
-
-    CSS: {
-        SRC: './css',
-        DEST: '../public/css',
-        FILENAME: 'app.css'
     }
 };
 
@@ -29,18 +23,15 @@ var del = require( 'del' ),
     gutil = require( 'gulp-util' ),
     runSequence = require('run-sequence' ),
     plumber = require( 'gulp-plumber' ),
-
     concat = require( 'gulp-concat' ),
     uglify = require( 'gulp-uglify' ),
+    ghPages = require( 'gulp-gh-pages' ),
+
     sourcemaps = require( 'gulp-sourcemaps' ),
     browserify = require( 'browserify' ),
     watchify = require( 'watchify' ),
 
-    postcss = require( 'gulp-postcss' ),
-    postcssImport = require( 'postcss-import' ),
-
-    browserSync = require( 'browser-sync' ).create(),
-    ghPages = require( 'gulp-gh-pages' );
+    browserSync = require( 'browser-sync' ).create();
 
 
 var b = browserify( Object.assign( {}, watchify.args, {
@@ -73,58 +64,39 @@ gulp.task( 'build:js:watch', function(){
     b = watchify( b );
     b.on( 'update', bundleJS );
     b.on( 'log', gutil.log );
-    return bundleJS();
+    bundleJS();
 } );
 
 gulp.task( 'build:jsLibs', function(){
-    return gulp
-        .src( SETTINGS.JS_LIBS.SRC )
-        .pipe( sourcemaps.init( {loadMaps: true} ) )
+    gulp.src( SETTINGS.JS_LIBS.SRC )
         .pipe( uglify() )
         .pipe( concat( SETTINGS.JS_LIBS.FILENAME ) )
-        .pipe( sourcemaps.write( './') )
         .pipe( gulp.dest( SETTINGS.JS_LIBS.DEST ) );
 } );
 
-
-gulp.task( 'build:css', function(){
-    return gulp
-        .src( [ SETTINGS.CSS.SRC, SETTINGS.CSS.FILENAME ].join( '/' ) )
-        .pipe( postcss( [
-            postcssImport
-        ] ) )
-        .pipe( gulp.dest( SETTINGS.CSS.DEST ) );
-} );
-
-gulp.task( 'build:css:watch', function(){
-    return gulp.watch( [ SETTINGS.CSS.SRC, '**/*.*' ].join( '/' ), [ 'build:css' ] );
-} );
-
-
 gulp.task( 'build', function( callback ){
     // ToDo: clean
-    runSequence( [ 'build:css', 'build:jsLibs', 'build:js' ], callback  );
+    runSequence( [ 'build:jsLibs', 'build:js' ], callback  );
 } );
 
 
 gulp.task( 'browserSync', function(){
     browserSync.init( {
-        files: [ '../public/**/*.*', '../public/*.*' ],
         server: {
             baseDir: '../public/',
             https: true
         }
     } );
-    browserSync.emitter.on( 'reload', gutil.log );
+
+    return gulp.watch( '../public/**/*.*' ).on( 'change', browserSync.reload );
 } );
 
 gulp.task( 'server', function( callback ){
-    runSequence( 'build', [ 'build:css:watch', 'build:js:watch' ], 'browserSync', callback  );
+    runSequence( 'build', 'build:js:watch', 'browserSync', callback  );
 } );
 
 gulp.task( 'gh-pages', function(){
-    return gulp
-        .src( '../public/**/*' )
+    return gulp.src( '../public/**/*' )
         .pipe( ghPages() );
 } );
 
