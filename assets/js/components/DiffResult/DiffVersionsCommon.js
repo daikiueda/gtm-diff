@@ -1,10 +1,21 @@
 import React, { Component, Proptypes } from 'react';
+
+import Styles, { Spacing } from 'material-ui/lib/styles/index';
+import Paper from 'material-ui/lib/paper';
 import ElementName from './ElementName.js';
 import ElementDataRow, { CLASS_NAME } from './ElementDataRow.js';
 
 import union from 'lodash.union';
 
 export default class DiffVersionsCommon extends Component {
+
+    getStyles(){
+        return {
+            item: {
+                padding: Spacing.desktopGutter
+            }
+        };
+    }
 
     createParticularRows( params ){
         switch( params[ 0 ] ){
@@ -48,16 +59,17 @@ export default class DiffVersionsCommon extends Component {
     }
 
     render(){
-        var sections = this.props.contents.map( ( content ) => {
+        var style = this.getStyles(),
+            sections = this.props.contents.map( ( content ) => {
             return (
-                <section className={content[ 0 ]? 'modified': 'notModified'}>
+                <Paper style={style.item} className={content[ 0 ]? 'modified': 'notModified'}>
                     <ElementName elementType={this.elementType} content={content} />
                     <table>
                         <tbody>
                             {this.createDataBody( content )}
                         </tbody>
                     </table>
-                </section>
+                </Paper>
             );
         } );
 

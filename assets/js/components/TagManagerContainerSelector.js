@@ -4,21 +4,31 @@ import Dialog from 'material-ui/lib/dialog';
 
 export default class TagManagerContainerSelector extends Component {
 
+    componentWillReceiveProps( nextProps ){
+        if( !nextProps.selectedContainer ){
+            this.selectedContainer = this.props.selectedContainer;
+            this.refs.dialog.show();
+        }
+    }
+
+    componentDidMount(){
+        if( !this.props.selectedContainer ){
+            this.selectedContainer = this.props.selectedContainer;
+            this.refs.dialog.show();
+        }
+    }
+
+    handleOnDismiss(){
+        this.props.selectContainer( this.selectedContainer );
+    }
+
     handleOnSelect( container ){
         return ( e ) => {
             e.preventDefault();
             this.props.selectContainer( container );
-            //this.selectedContainer = container;
+            this.selectedContainer = container;
             this.refs.dialog.dismiss();
         };
-    }
-
-    componentDidMount(){
-        if( ( this.props.tagManagerAccountsAndContainers || [] ).length ){
-            this.selectedContainer = this.props.selectedContainer;
-            this.refs.dialog.show();
-            //this.refs.dialog.onDismiss( () => this.props.selectContainer( this.selectedContainer ) );
-        }
     }
 
     render(){
@@ -35,10 +45,13 @@ export default class TagManagerContainerSelector extends Component {
         } );
 
         if( listBody.length ){
+            {/* ToDo: modal=false が有効でない？ライブラリのアップデートまでtrueにしておく。 */}
             return (
                 <Dialog
                     title="Select GTM Container"
                     ref="dialog"
+                    modal={true}
+                    onDismiss={this.handleOnDismiss.bind(this)}
                 >
                     <dl>{listBody}</dl>
                 </Dialog>

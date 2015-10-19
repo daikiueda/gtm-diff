@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import AppCanvas from 'material-ui/lib/app-bar';
+import Styles, { Spacing } from 'material-ui/lib/styles/index';
 import AppBar from 'material-ui/lib/app-bar';
 import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -22,19 +22,29 @@ import {
 
 
 export default class App extends Component {
+
+    getStyles(){
+        return {
+            content: {
+                padding: Spacing.desktopGutter
+            }
+        };
+    }
+
     render(){
         const { dispatch } = this.props;
 
-        var appBarRightUI =
+        var styles = this.getStyles(),
+            appBarRightUI =
             this.props.selectedConditions.tagManagerContainer ?
                 <FlatButton
                     label={this.props.selectedConditions.tagManagerContainer.name}
                     primary={true}
+                    onClick={() => dispatch( clearTagManagerContainerSelection() )}
                     />:
-                <RaisedButton
+                <FlatButton
                     label="Select GTM container"
                     primary={true}
-                    onMouseUp={() => dispatch(clearTagManagerContainerSelection())}
                     />;
 
         return this.props.isGoogleLoggedIn ?
@@ -42,28 +52,36 @@ export default class App extends Component {
                 <div>
                     <AppBar
                         showMenuIconButton={false}
-                        title="Google Tag Manager DIFF"
+                        title="Google Tag Manager Diff"
                         iconElementRight={appBarRightUI}
                         />
 
-                    <TagManagerContainerSelector
-                        tagManagerAccountsAndContainers={this.props.tagManagerAccountsAndContainers}
-                        selectedContainer={this.props.selectedConditions.tagManagerContainer}
-                        selectContainer={( container ) => dispatch( selectTagManagerContainer( container ) )}
-                        />
+                    <div style={styles.content}>
+                        <TagManagerContainerSelector
+                            tagManagerAccountsAndContainers={this.props.tagManagerAccountsAndContainers}
+                            selectedContainer={this.props.selectedConditions.tagManagerContainer}
+                            selectContainer={( container ) => dispatch( selectTagManagerContainer( container ) )}
+                            />
 
-                    <TagManagerContainerVersionSelector
-                        role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_LEFT}
-                        tagManagerContainerVersions={this.props.tagManagerContainerVersions}
-                        selectVersion={( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) )}
-                        />
-                    <TagManagerContainerVersionSelector
-                        role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_RIGHT}
-                        tagManagerContainerVersions={this.props.tagManagerContainerVersions}
-                        selectVersion={ ( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) ) }
-                        />
+                        <p>
+                            Compare&nbsp;
+                            <TagManagerContainerVersionSelector
+                                role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_LEFT}
+                                tagManagerContainerVersions={this.props.tagManagerContainerVersions}
+                                selectedVersion={this.props.tagManagerContainerVersionAtLeft}
+                                selectVersion={( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) )}
+                                />
+                            &nbsp;with&nbsp;
+                            <TagManagerContainerVersionSelector
+                                role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_RIGHT}
+                                tagManagerContainerVersions={this.props.tagManagerContainerVersions}
+                                selectedVersion={this.props.tagManagerContainerVersionAtRight}
+                                selectVersion={ ( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) ) }
+                                />
+                        </p>
 
-                    <DiffResult result={this.props.diffResult} />
+                        <DiffResult result={this.props.diffResult} />
+                    </div>
                 </div>
             ):
             <RequireGoogleLogin loginGoogle={() => dispatch( authGoogle( false ) )} />;
