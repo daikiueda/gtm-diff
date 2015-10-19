@@ -51,7 +51,7 @@ var b = browserify( Object.assign( {}, watchify.args, {
 function bundleJS(){
     return b
         .transform( 'babelify' )
-        .transform( 'browserify-shim', { global: true } )
+        //.transform( 'browserify-shim', { global: true } )
         .bundle()
         .on( 'error', function( err ){
             console.log( err.message );
