@@ -62,7 +62,7 @@ export default class DiffVersionsCommon extends Component {
         var style = this.getStyles(),
             sections = this.props.contents.map( ( content ) => {
             return (
-                <Paper style={style.item} className={content[ 0 ]? 'modified': 'notModified'}>
+                <Paper style={style.item} className={'element ' + ( content[ 0 ]? 'modified': 'notModified' )}>
                     <ElementName elementType={this.elementType} content={content} />
                     <table>
                         <tbody>

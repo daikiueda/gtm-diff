@@ -16,7 +16,7 @@ const SETTINGS = {
     CSS: {
         SRC: './css',
         DEST: '../public/css',
-        FILENAME: 'app.css'
+        FILENAME: 'app.scss'
     }
 };
 
@@ -38,6 +38,7 @@ var del = require( 'del' ),
 
     postcss = require( 'gulp-postcss' ),
     postcssImport = require( 'postcss-import' ),
+    postcssNested = require( 'postcss-nested' ),
 
     browserSync = require( 'browser-sync' ).create(),
     ghPages = require( 'gulp-gh-pages' );
@@ -91,7 +92,8 @@ gulp.task( 'build:css', function(){
     return gulp
         .src( [ SETTINGS.CSS.SRC, SETTINGS.CSS.FILENAME ].join( '/' ) )
         .pipe( postcss( [
-            postcssImport
+            postcssImport,
+            postcssNested
         ] ) )
         .pipe( gulp.dest( SETTINGS.CSS.DEST ) );
 } );

@@ -51,6 +51,7 @@ export default class TagManagerContainerSelector extends Component {
                     title="Select GTM Container"
                     ref="dialog"
                     modal={true}
+                    autoScrollBodyContent={true}
                     onDismiss={this.handleOnDismiss.bind(this)}
                 >
                     <dl>{listBody}</dl>
