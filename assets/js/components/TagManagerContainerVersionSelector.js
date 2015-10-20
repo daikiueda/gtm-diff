@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+//import DropDownMenu from 'material-ui/lib/drop-down-menu';
+
 export default class TagManagerContainerVersionSelector extends Component {
 
     handleOnSelect( e ){
@@ -32,4 +34,17 @@ export default class TagManagerContainerVersionSelector extends Component {
             <select onChange={ e => this.handleOnSelect( e )}>{items}</select>:
             <span>?</span>;
     }
+
+    //render(){
+    //    var items = [ { text: '-', payload: null } ];
+    //
+    //    this.props.tagManagerContainerVersions.reduceRight( ( items, version ) => {
+    //        items.push( { text: version.containerVersionId, payload: version } );
+    //        return items;
+    //    }, items );
+    //
+    //    return this.props.tagManagerContainerVersions.length ?
+    //        <DropDownMenu menuItems={items} />:
+    //        <span>?</span>;
+    //}
 }

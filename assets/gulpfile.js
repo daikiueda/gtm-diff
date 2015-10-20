@@ -16,7 +16,7 @@ const SETTINGS = {
     CSS: {
         SRC: './css',
         DEST: '../public/css',
-        FILENAME: 'app.scss'
+        FILENAME: 'app.css'
     }
 };
 
