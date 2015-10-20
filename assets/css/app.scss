@@ -1,0 +1,26 @@
+section.notModified {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0 auto;
+}
+table th, table td {
+  text-align: left;
+  vertical-align: top;
+  word-break: break-all;
+}
+tbody td {
+  width: 40%;
+}
+tr.modified {
+  background: #ffcccc;
+}
+tr.complex th {
+  border-left: solid 15px #ddd;
+}
+tr.complex th[colspan="3"] {
+  background: #ddd;
+}

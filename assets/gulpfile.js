@@ -11,6 +11,12 @@ const SETTINGS = {
         SRC: './js/app.js',
         DEST: '../public/js',
         FILENAME: 'app.js'
+    },
+
+    CSS: {
+        SRC: './css',
+        DEST: '../public/css',
+        FILENAME: 'app.scss'
     }
 };
 
@@ -25,13 +31,16 @@ var del = require( 'del' ),
     plumber = require( 'gulp-plumber' ),
     concat = require( 'gulp-concat' ),
     uglify = require( 'gulp-uglify' ),
-    ghPages = require( 'gulp-gh-pages' ),
 
     sourcemaps = require( 'gulp-sourcemaps' ),
     browserify = require( 'browserify' ),
     watchify = require( 'watchify' ),
 
-    browserSync = require( 'browser-sync' ).create();
+    postcss = require( 'gulp-postcss' ),
+    postcssImport = require( 'postcss-import' ),
+
+    browserSync = require( 'browser-sync' ).create(),
+    ghPages = require( 'gulp-gh-pages' );
 
 
 var b = browserify( Object.assign( {}, watchify.args, {
@@ -64,7 +73,7 @@ gulp.task( 'build:js:watch', function(){
     b = watchify( b );
     b.on( 'update', bundleJS );
     b.on( 'log', gutil.log );
-    bundleJS();
+    return bundleJS();
 } );
 
 gulp.task( 'build:jsLibs', function(){
@@ -73,6 +82,21 @@ gulp.task( 'build:jsLibs', function(){
         .pipe( concat( SETTINGS.JS_LIBS.FILENAME ) )
         .pipe( gulp.dest( SETTINGS.JS_LIBS.DEST ) );
 } );
+
+
+gulp.task( 'build:css', function(){
+    return gulp
+        .src( [ SETTINGS.CSS.SRC, SETTINGS.CSS.FILENAME ].join( '/' ) )
+        .pipe( postcss( [
+            postcssImport
+        ] ) )
+        .pipe( gulp.dest( SETTINGS.CSS.DEST ) );
+} );
+
+gulp.task( 'build:css:watch', function(){
+    return gulp.watch( [ SETTINGS.CSS.SRC, '**/*.*' ].join( '/' ), [ 'build:css' ] );
+} );
+
 
 gulp.task( 'build', function( callback ){
     // ToDo: clean
@@ -92,7 +116,7 @@ gulp.task( 'browserSync', function(){
 } );
 
 gulp.task( 'server', function( callback ){
-    runSequence( 'build', 'build:js:watch', 'browserSync', callback  );
+    runSequence( 'build', 'build:js:watch', 'build:css:watch', 'browserSync', callback  );
 } );
 
 gulp.task( 'gh-pages', function(){
