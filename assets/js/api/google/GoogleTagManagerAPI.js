@@ -50,7 +50,11 @@ export default class GoogleTagManagerAPI {
 
         return Q.promise( ( resolve, reject ) => {
             requestContainersList.execute( response => {
-                resolve( response.containers );
+                resolve( response.containers.map( container => {
+                    // それぞれのコンテナに、アカウント名を付与する
+                    container.accountName = name;
+                    return container;
+                } ) );
             } );
         } );
     }

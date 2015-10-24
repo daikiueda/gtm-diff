@@ -9,7 +9,24 @@ export default class TagManagerContainerSelector extends Component {
         };
     }
 
+    handleOnClear( e ){
+        e.preventDefault();
+        this.props.clearContainer();
+    }
+
     render(){
+        if( this.props.selectedContainer ){
+            return (
+                <div className="containerSelector selected">
+                    <a href="#" onClick={this.handleOnClear.bind( this )}>
+                        {this.props.selectedContainer.accountName}
+                        &nbsp;/&nbsp;
+                        {this.props.selectedContainer.name}
+                    </a>
+                </div>
+            );
+        }
+
         var listBody = [];
         this.props.tagManagerAccountsAndContainers.forEach( account => {
             listBody.push( <dt key={'account_' + account.accountId}>{account.name}</dt> );
@@ -23,7 +40,10 @@ export default class TagManagerContainerSelector extends Component {
         } );
 
         return (
-            <dl>{listBody}</dl>
-        )
+            <div className="containerSelector">
+                <h2>Select Google Tag Manager Container.</h2>
+                <dl>{listBody}</dl>
+            </div>
+        );
     }
 }

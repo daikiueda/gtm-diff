@@ -2,28 +2,34 @@ import React, { Component, PropTypes } from 'react';
 
 export default class TagManagerContainerVersionSelector extends Component {
 
-    handleOnSelect( version ){
-        return ( e ) => {
-            e.preventDefault();
-            this.props.selectVersion( version, this.props.role );
-        };
+    handleOnSelect( e ){
+        e.preventDefault();
+        var select = e.target,
+            versionId = select.options[ select.selectedIndex ].value,
+            versionObj = this.props.tagManagerContainerVersions.filter( version => {
+                return version.containerVersionId === versionId;
+            } )[ 0 ];
+        this.props.selectVersion( versionObj, this.props.role );
     }
 
     render(){
-        var items = this.props.tagManagerContainerVersions.map( ( version ) => {
-            var key = [ 'ver', version.containerVersionId, 'of', version.containerId ].join( '_' );
-            return (
-                <li key={key}><a href="#" onClick={this.handleOnSelect( version )}>{version.containerVersionId}</a></li>
+        var currentSelected = this.props.selectedVersion,
+            items = [ <option value="">-</option> ];
+
+        this.props.tagManagerContainerVersions.reduceRight( ( items, version ) => {
+            items.push(
+                <option
+                    value={version.containerVersionId}
+                    selected={version === currentSelected}
+                    >
+                    {version.containerVersionId}
+                </option>
             );
-        } );
+            return items;
+        }, items );
 
         return this.props.tagManagerContainerVersions.length ?
-            (
-                <div>
-                    <p>{this.props.role}</p>
-                    <ol>{items}</ol>
-                </div>
-            ):
-            <div></div>;
+            <select onChange={ e => this.handleOnSelect( e )}>{items}</select>:
+            <span>?</span>;
     }
 }

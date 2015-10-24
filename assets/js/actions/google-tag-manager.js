@@ -1,6 +1,7 @@
 export const SET_GOOGLE_TAG_MANAGER_API = 'SET_GOOGLE_TAG_MANAGER_API',
     SET_TAG_MANAGER_ACCOUNTS_AND_CONTAINERS = 'SET_TAG_MANAGER_ACCOUNTS_AND_CONTAINERS',
     SELECT_TAG_MANAGER_CONTAINER = 'SELECT_TAG_MANAGER_CONTAINER',
+    CLEAR_TAG_MANAGER_CONTAINER = 'CLEAR_TAG_MANAGER_CONTAINER',
     SET_TAG_MANAGER_CONTAINER_VERSIONS = 'SET_TAG_MANAGER_CONTAINER_VERSIONS',
     SET_TAG_MANAGER_CONTAINER_VERSION_AT_LEFT = 'SET_TAG_MANAGER_CONTAINER_VERSION_AT_LEFT',
     SET_TAG_MANAGER_CONTAINER_VERSION_AT_RIGHT = 'SET_TAG_MANAGER_CONTAINER_VERSION_AT_RIGHT',
@@ -28,6 +29,10 @@ export function selectTagManagerContainer( container ){
         return api.fetchContainerVersions( container )
             .then( ( containerVersions ) => { dispatch( { type: SET_TAG_MANAGER_CONTAINER_VERSIONS, containerVersions } ) } )
     };
+}
+
+export function clearTagManagerContainer(){
+    return { type: CLEAR_TAG_MANAGER_CONTAINER };
 }
 
 export function selectTagManagerContainerVersion( version, role ){

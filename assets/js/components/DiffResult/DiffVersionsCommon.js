@@ -2,6 +2,7 @@ import React, { Component, Proptypes } from 'react';
 import ElementName from './ElementName.js';
 import ElementDataRow, { CLASS_NAME } from './ElementDataRow.js';
 
+import isEqual from 'lodash.isequal';
 import union from 'lodash.union';
 
 export default class DiffVersionsCommon extends Component {
@@ -78,7 +79,10 @@ DiffVersionsCommon.flattenSimpleObject = function( value ){
 };
 
 DiffVersionsCommon.createComplexDataRows = function( params ){
-    var rows = [ <tr className={CLASS_NAME.COMPLEX_DATA_CONTAINER}><th colSpan="3">{params[ 0 ]}</th></tr> ],
+    var nameRowClassName =
+            CLASS_NAME.COMPLEX_DATA_CONTAINER +
+            ( isEqual( params[ 1 ], params[ 2 ] )? '': ' ' + CLASS_NAME.MODIFIED ),
+        rows = [ <tr className={nameRowClassName}><th colSpan="3">{params[ 0 ]}</th></tr> ],
         keys = union(
             ( params[ 1 ] || [] ).map( param => { return param.key } ),
             ( params[ 2 ] || [] ).map( param => { return param.key } )

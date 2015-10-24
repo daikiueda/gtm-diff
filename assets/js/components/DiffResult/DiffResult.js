@@ -18,19 +18,19 @@ export default class DiffResult extends Component {
         }
 
         var typeSections = [
-            [ 'tag', 'タグ', ( contents )=>{ return <DiffTagVersions contents={contents} /> } ],
-            [ 'trigger', 'トリガー', ( contents )=>{ return <DiffTriggerVersions contents={contents} /> } ],
-            [ 'variable', '変数', ( contents )=>{ return <DiffVariableVersions contents={contents} /> } ]
+            [ 'tag', 'Tag', ( contents )=>{ return <DiffTagVersions contents={contents} /> } ],
+            [ 'trigger', 'Trigger', ( contents )=>{ return <DiffTriggerVersions contents={contents} /> } ],
+            [ 'variable', 'Variable', ( contents )=>{ return <DiffVariableVersions contents={contents} /> } ]
         ].map( type =>{
                 return this.props.result[ type[ 0 ] ] ?
                     (
                         <section className={hasModified( this.props.result[ type[ 0 ] ] )}>
-                            <h2>{type[ 1 ]}</h2>
+                            <h4>{type[ 1 ]}</h4>
                             {type[ 2 ]( this.props.result[ type[ 0 ] ] )}
                         </section>
-                    ): <section></section>
+                    ): <div></div>
             } );
 
-        return <div>{typeSections}</div>;
+        return <div className="result">{typeSections}</div>;
     }
 }
