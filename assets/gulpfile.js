@@ -14,9 +14,8 @@ const SETTINGS = {
     },
 
     CSS: {
-        SRC: './css',
-        DEST: '../public/css',
-        FILENAME: 'app.scss'
+        SRC: './css/**/*.scss',
+        DEST: '../public/css'
     }
 };
 
@@ -36,6 +35,7 @@ var del = require( 'del' ),
     browserify = require( 'browserify' ),
     watchify = require( 'watchify' ),
 
+    sass = require( 'gulp-sass' ),
     postcss = require( 'gulp-postcss' ),
     postcssImport = require( 'postcss-import' ),
 
@@ -86,15 +86,16 @@ gulp.task( 'build:jsLibs', function(){
 
 gulp.task( 'build:css', function(){
     return gulp
-        .src( [ SETTINGS.CSS.SRC, SETTINGS.CSS.FILENAME ].join( '/' ) )
-        .pipe( postcss( [
-            postcssImport
-        ] ) )
+        .src( SETTINGS.CSS.SRC )
+        .pipe( sourcemaps.init() )
+        .pipe( sass( { outputStyle: 'expanded' } ).on( 'error', sass.logError ) )
+        .pipe( postcss( [ postcssImport ] ) )
+        .pipe( sourcemaps.write( './' ) )
         .pipe( gulp.dest( SETTINGS.CSS.DEST ) );
 } );
 
 gulp.task( 'build:css:watch', function(){
-    return gulp.watch( [ SETTINGS.CSS.SRC, '**/*.*' ].join( '/' ), [ 'build:css' ] );
+    return gulp.watch( SETTINGS.CSS.SRC, [ 'build:css' ] );
 } );
 
 
