@@ -1,0 +1,11 @@
+%clearFixAfter {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+@mixin clearFix(){
+  &:after {
+    @extend %clearFixAfter;
+  }
+}

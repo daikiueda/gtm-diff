@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 
 import RequireGoogleLogin from './RequireGoogleLogin/RequireGoogleLogin.js';
+import TagManagerContainerSwitcher from './TagManagerContainerSwitcher.js';
 import TagManagerContainerSelector from './TagManagerContainerSelector.js';
-import TagManagerContainerVersionSelector from './TagManagerContainerVersionSelector.js';
-import DiffResult from './DiffResult/DiffResult.js';
+import TagManagerContainerVersionSelector from './Diff/TagManagerContainerVersionSelector.js';
+import DiffResult from './Diff/DiffResult.js';
 
 import { authGoogle, signOutFromGoogle } from '../actions/google-core.js';
 import {
@@ -18,46 +19,69 @@ import {
 export default class App extends Component {
     render(){
         const { dispatch } = this.props;
-        return this.props.isGoogleLoggedIn ?
-            (
-                <div>
-                    <header>
-                        <h1>Google Tag Manager DIFF</h1>
-                    </header>
 
-                    <section>
-                        <TagManagerContainerSelector
-                            tagManagerAccountsAndContainers={this.props.tagManagerAccountsAndContainers}
-                            selectedContainer={this.props.selectedConditions.tagManagerContainer}
-                            selectContainer={( container ) => dispatch( selectTagManagerContainer( container ) )}
-                            clearContainer={() => dispatch( clearTagManagerContainer() )}
-                            />
+        var tools = [],
+            content = [];
 
-                        { this.props.selectedConditions.tagManagerContainer && (
-                            <section className="diff">
-                                <h3 className="versionsSelector">
-                                    Compare&nbsp;
-                                    <TagManagerContainerVersionSelector
-                                        role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_LEFT}
-                                        tagManagerContainerVersions={this.props.tagManagerContainerVersions}
-                                        selectedVersion={this.props.selectedConditions.tagManagerContainerVersionAtLeft}
-                                        selectVersion={( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) )}
-                                        />
-                                    &nbsp;with&nbsp;
-                                    <TagManagerContainerVersionSelector
-                                        role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_RIGHT}
-                                        tagManagerContainerVersions={this.props.tagManagerContainerVersions}
-                                        selectedVersion={this.props.selectedConditions.tagManagerContainerVersionAtRight}
-                                        selectVersion={ ( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) ) }
-                                        />
-                                </h3>
-                                <DiffResult result={this.props.diffResult} />
-                            </section>
-                        ) }
-                    </section>
-                </div>
-            ):
-            <RequireGoogleLogin loginGoogle={() => dispatch( authGoogle( false ) )} />;
+        if( this.props.tagManagerContainerVersions.length ){
+            tools.push(
+                <li className="versions">
+                    Compare&nbsp;
+                    <TagManagerContainerVersionSelector
+                        role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_LEFT}
+                        tagManagerContainerVersions={this.props.tagManagerContainerVersions}
+                        selectedVersion={this.props.selectedConditions.tagManagerContainerVersionAtLeft}
+                        selectVersion={( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) )}
+                        />
+                    &nbsp;with&nbsp;
+                    <TagManagerContainerVersionSelector
+                        role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_RIGHT}
+                        tagManagerContainerVersions={this.props.tagManagerContainerVersions}
+                        selectedVersion={this.props.selectedConditions.tagManagerContainerVersionAtRight}
+                        selectVersion={ ( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) ) }
+                        />
+                </li>
+            )
+        }
+
+        if( !this.props.isGoogleLoggedIn ){
+            content = (
+                <RequireGoogleLogin loginGoogle={() => dispatch( authGoogle( false ) )} />
+            );
+        }
+        else if( !this.props.selectedConditions.tagManagerContainer ){
+            content = (
+                <TagManagerContainerSelector
+                    tagManagerAccountsAndContainers={this.props.tagManagerAccountsAndContainers}
+                    selectContainer={( container ) => dispatch( selectTagManagerContainer( container ) )}
+                    />
+            );
+        }
+        else if( this.props.tagManagerContainerVersions.length ){
+            content = (
+                <DiffResult result={this.props.diffResult} />
+            );
+        }
+
+        if( tools.length ){
+            tools = <ul className="settings">{tools}</ul>;
+        }
+
+        return (
+            <div>
+                <header>
+                    <h1>Google Tag Manager DIFF</h1>
+
+                    <TagManagerContainerSwitcher
+                        selectedContainer={this.props.selectedConditions.tagManagerContainer}
+                        clearContainer={() => dispatch( clearTagManagerContainer() )}
+                        />
+                </header>
+
+                {tools}
+                {content}
+            </div>
+        );
     }
 }
 

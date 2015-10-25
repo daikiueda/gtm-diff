@@ -1,3 +1,17 @@
 $colors: (
+        primary: #8BC34A,
+        accent: #00FF00,
 
-)
+        text-default: #333333,
+        text-default-1: #555555,
+
+        bg-canvas: #EDEDED,
+        bg-frame: #FFFFFF,
+
+        border-content: #E1E1E1,
+        border-nav: #E1E1E1
+);
+
+@function getColor( $key ){
+  @return map_get( $colors, $key );
+}

@@ -31,6 +31,6 @@ export default class DiffResult extends Component {
                     ): <div></div>
             } );
 
-        return <div className="result">{typeSections}</div>;
+        return <main className="result">{typeSections}</main>;
     }
 }

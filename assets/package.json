@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/daikiueda/gtm-diff",
   "dependencies": {
+    "autoprefixer": "^6.0.3",
     "babel": "^5.8.23",
     "babelify": "^6.3.0",
     "browser-sync": "^2.9.10",

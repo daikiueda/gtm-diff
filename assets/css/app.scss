@@ -1,114 +1,14 @@
 @import "../bower_components/normalize-css/normalize.css";
 
+@import "./veriables/utilities";
 @import "./veriables/typography";
 @import "./veriables/spacing";
+@import "./veriables/colors";
+@import "./veriables/shapes";
 
-html {
-  font-size: $font-size-default;
-}
+@import "global/html-and-body";
+@import "global/header-and-toolbar";
 
-body {
-  @include fs( 16px );
-  line-height: $line-height-default;
-  font-family: $font-family-default;
-
-  background: #EDEDED;
-}
-
-header {
-  padding: $line-height-default $line-height-default ( $line-height-default - 1px );
-  background: #ffffff;
-  border-bottom: solid 1px rgb(225, 225, 225);
-
-  h1 {
-    margin: 0;
-    @include fs( 18px );
-    line-height: $font-size-default * 1;
-    color: #8BC34A;
-  }
-}
-
-div.containerSelector {
-  padding: ( $line-height-default / 2 ) $line-height-default * 2;
-
-  &.selected {
-    background: #569324;
-    color: #fff;
-
-    a {
-      text-decoration: none;
-      color: #fff;
-    }
-  }
-}
-
-section.diff {
-  padding: 0 $line-height-default ( $line-height-default * 2 );
-}
-
-h3.versionsSelector {
-  @include fs( 16px );
-  text-align: center;
-
-  select {
-    -moz-appearance: none;    // Firefox 36+
-    -webkit-appearance: none; // Chrome 41+
-    border-radius: 0;
-    @include fs( 16px );
-    line-height: 1;
-    padding: 0.5em;
-    text-align: right;
-  }
-}
-
-div.result {
-
-  section h4 {
-    @include fs( 24px );
-  }
-  section section {
-    padding: $line-height-default;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-    border-radius: 2px;
-    background: #fff;
-  }
-
-  section.notModified {
-    display: none;
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 0 0 1em;
-    border-bottom: solid 1px rgba( 0, 0, 0, 0.12 );
-  }
-  th, td {
-    border-top: solid 1px rgba( 0, 0, 0, 0.12 );
-    padding: 1em;
-    text-align: left;
-    word-break: break-all;
-  }
-  tbody td {
-    width: 40%;
-    vertical-align: top;
-  }
-  tr.modified {
-    background: #ffffcc;
-  }
-  tr.complex {
-    th, td {
-      border-top: solid 1px rgba(0, 0, 0, 0.05);
-    }
-    th {
-      padding-left: 3em;
-      font-weight: normal;
-    }
-    th[colspan="3"] {
-      border-top: solid 1px rgba( 0, 0, 0, 0.12 );
-      padding-left: 1em;
-      font-weight: bold;
-    }
-  }
-}
+@import "./scenes/container-selector";
+@import "./scenes/diff";
 

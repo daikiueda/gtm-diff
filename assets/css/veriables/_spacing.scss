@@ -1,1 +1,11 @@
-$page-face-space: $line-height-default * 3;
+$space: (
+  micro: $line-height-default / 4,
+  half: $line-height-default / 2,
+  unit: $line-height-default,
+  element: $line-height-default,
+  section: $line-height-default * 2
+);
+
+@function getSpace( $key ){
+  @return map_get( $space, $key );
+}

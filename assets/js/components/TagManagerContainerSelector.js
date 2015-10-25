@@ -15,18 +15,6 @@ export default class TagManagerContainerSelector extends Component {
     }
 
     render(){
-        if( this.props.selectedContainer ){
-            return (
-                <div className="containerSelector selected">
-                    <a href="#" onClick={this.handleOnClear.bind( this )}>
-                        {this.props.selectedContainer.accountName}
-                        &nbsp;/&nbsp;
-                        {this.props.selectedContainer.name}
-                    </a>
-                </div>
-            );
-        }
-
         var listBody = [];
         this.props.tagManagerAccountsAndContainers.forEach( account => {
             listBody.push( <dt key={'account_' + account.accountId}>{account.name}</dt> );
@@ -40,10 +28,10 @@ export default class TagManagerContainerSelector extends Component {
         } );
 
         return (
-            <div className="containerSelector">
+            <main className="containerSelector">
                 <h2>Select Google Tag Manager Container.</h2>
                 <dl>{listBody}</dl>
-            </div>
+            </main>
         );
     }
 }

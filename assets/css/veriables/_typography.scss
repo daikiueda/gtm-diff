@@ -1,18 +1,23 @@
 $font-family-default: "Roboto", Arial, sans-serif;
 
-$font-size-default: 16px;
+$font-size-system-default: 16px;
+$font-size-default: 14px;
 
 $line-height-default: $font-size-default * 1.5;
 
-@mixin fs( $size ){
+@mixin fs( $size, $auto-line-height: false ){
   font-size: ( $size );
-  font-size: ( $size / $font-size-default ) + rem;
+  font-size: ( $size / $font-size-system-default ) + rem;
+
+  @if $auto-line-height == true {
+    line-height: $line-height-default * ceil( $size / $line-height-default );
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
-h2, h3 {
-  font-size: 24px;
-  line-height: $line-height-default * 2;
-}
+//h2, h3 {
+//  font-size: 24px;
+//  line-height: $line-height-default * 2;
+//}
