@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 
-import RequireGoogleLogin from './RequireGoogleLogin/RequireGoogleLogin.js';
-import TagManagerContainerSwitcher from './TagManagerContainerSwitcher.js';
-import TagManagerContainerSelector from './TagManagerContainerSelector.js';
-import TagManagerContainerVersionSelector from './Diff/TagManagerContainerVersionSelector.js';
-import DiffResult from './Diff/DiffResult.js';
+import GlobalHeader from './GlobalHeader.js';
+import RequireGoogleLogin from './RequireGoogleLogin/Main.js';
+import TagManagerContainerSelector from './ContainerSelector/Main.js';
+import Diff from './Diff/Main.js';
 
-import { authGoogle, signOutFromGoogle } from '../actions/google-core.js';
+import {
+    authGoogle,
+    signOutFromGoogle
+} from '../actions/google-core.js';
 import {
     selectTagManagerContainer,
     selectTagManagerContainerVersion,
@@ -20,29 +22,7 @@ export default class App extends Component {
     render(){
         const { dispatch } = this.props;
 
-        var tools = [],
-            content = [];
-
-        if( this.props.tagManagerContainerVersions.length ){
-            tools.push(
-                <li className="versions">
-                    Compare&nbsp;
-                    <TagManagerContainerVersionSelector
-                        role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_LEFT}
-                        tagManagerContainerVersions={this.props.tagManagerContainerVersions}
-                        selectedVersion={this.props.selectedConditions.tagManagerContainerVersionAtLeft}
-                        selectVersion={( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) )}
-                        />
-                    &nbsp;with&nbsp;
-                    <TagManagerContainerVersionSelector
-                        role={SET_TAG_MANAGER_CONTAINER_VERSION_AT_RIGHT}
-                        tagManagerContainerVersions={this.props.tagManagerContainerVersions}
-                        selectedVersion={this.props.selectedConditions.tagManagerContainerVersionAtRight}
-                        selectVersion={ ( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) ) }
-                        />
-                </li>
-            )
-        }
+        var content;
 
         if( !this.props.isGoogleLoggedIn ){
             content = (
@@ -59,26 +39,29 @@ export default class App extends Component {
         }
         else if( this.props.tagManagerContainerVersions.length ){
             content = (
-                <DiffResult result={this.props.diffResult} />
+                <Diff
+                    tagManagerContainerVersions={this.props.tagManagerContainerVersions}
+                    selectedVersions={ [
+                        this.props.selectedConditions.tagManagerContainerVersionAtLeft,
+                        this.props.selectedConditions.tagManagerContainerVersionAtRight
+                    ] }
+                    selectionRoles={ [
+                        SET_TAG_MANAGER_CONTAINER_VERSION_AT_LEFT,
+                        SET_TAG_MANAGER_CONTAINER_VERSION_AT_RIGHT
+                    ] }
+                    selectVersion={( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) )}
+                    result={this.props.diffResult}
+                    />
             );
-        }
-
-        if( tools.length ){
-            tools = <ul className="settings">{tools}</ul>;
         }
 
         return (
             <div>
-                <header>
-                    <h1>Google Tag Manager DIFF</h1>
+                <GlobalHeader
+                    selectedContainer={this.props.selectedConditions.tagManagerContainer}
+                    clearContainer={() => dispatch( clearTagManagerContainer() )}
+                    />
 
-                    <TagManagerContainerSwitcher
-                        selectedContainer={this.props.selectedConditions.tagManagerContainer}
-                        clearContainer={() => dispatch( clearTagManagerContainer() )}
-                        />
-                </header>
-
-                {tools}
                 {content}
             </div>
         );

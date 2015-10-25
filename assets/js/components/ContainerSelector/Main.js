@@ -28,10 +28,12 @@ export default class TagManagerContainerSelector extends Component {
         } );
 
         return (
-            <main className="containerSelector">
-                <h2>Select Google Tag Manager Container.</h2>
-                <dl>{listBody}</dl>
-            </main>
+            <div className="containerSelector">
+                <main>
+                    <h2>Select Google Tag Manager Container.</h2>
+                    <dl>{listBody}</dl>
+                </main>
+            </div>
         );
     }
 }

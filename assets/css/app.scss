@@ -6,8 +6,9 @@
 @import "./veriables/colors";
 @import "./veriables/shapes";
 
-@import "global/html-and-body";
-@import "global/header-and-toolbar";
+@import "./global/html-and-body";
+@import "./global/header-and-toolbar";
+@import "./global/main";
 
 @import "./scenes/container-selector";
 @import "./scenes/diff";

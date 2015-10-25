@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class TagManagerContainerVersionSelector extends Component {
+export default class VersionSelector extends Component {
 
     handleOnSelect( e ){
         e.preventDefault();
