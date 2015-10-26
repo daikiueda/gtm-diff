@@ -10,6 +10,7 @@ import {
     signOutFromGoogle
 } from '../actions/google-core.js';
 import {
+    initGoogleTagManagerAPI,
     selectTagManagerContainer,
     selectTagManagerContainerVersion,
     clearTagManagerContainer,
@@ -26,7 +27,10 @@ export default class App extends Component {
 
         if( !this.props.isGoogleLoggedIn ){
             content = (
-                <RequireGoogleLogin loginGoogle={() => dispatch( authGoogle( false ) )} />
+                <RequireGoogleLogin loginGoogle={() => {
+                    dispatch( authGoogle( false ) )
+                        .then( () => dispatch( initGoogleTagManagerAPI() ) );
+                }} />
             );
         }
         else if( !this.props.selectedConditions.tagManagerContainer ){
