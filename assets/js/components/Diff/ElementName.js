@@ -9,11 +9,11 @@ export default class ElementName extends Component {
 
         if( nameA && nameB ){
             return nameA === nameB ?
-                <h5>{anchorElm} {nameA}</h5>:
-                <h5>{anchorElm} {nameA} | {nameB}</h5>;
+                <h3>{anchorElm} {nameA}</h3>:
+                <h3>{anchorElm} {nameA} | {nameB}</h3>;
         }
         else {
-            return <h5>{anchorElm} {nameA || nameB}</h5>
+            return <h3>{anchorElm} {nameA || nameB}</h3>
         }
     }
 }

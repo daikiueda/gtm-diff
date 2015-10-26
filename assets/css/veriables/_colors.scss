@@ -1,15 +1,23 @@
 $colors: (
-        primary: #8BC34A,
-        accent: #00FF00,
+  primary: #4CAF50,
+  primary-1: #81C784,
+  primary-2: #C8E6C9,
+  primary+1: #388E3C,
 
-        text-default: #333333,
-        text-default-1: #555555,
+  accent: #40C4FF,
+  accent-1: #80D8FF,
+  accent-2: #E1F5FE,
+  accent+1: #00B0FF,
 
-        bg-canvas: #EDEDED,
-        bg-frame: #FFFFFF,
+  text: rgba( 0, 0, 0, 0.87 ),
+  text-1: rgba( 0, 0, 0, 0.54 ),
+  text-inverse: #FFFFFF,
 
-        border-content: #E1E1E1,
-        border-nav: #E1E1E1
+  bg-canvas: #ECEFF1,
+  bg-frame: #FFFFFF,
+
+  border-content: #DADADA,
+  border-content-1: #E1E1E1
 );
 
 @function getColor( $key ){

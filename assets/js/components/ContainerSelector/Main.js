@@ -15,23 +15,27 @@ export default class TagManagerContainerSelector extends Component {
     }
 
     render(){
-        var listBody = [];
-        this.props.tagManagerAccountsAndContainers.forEach( account => {
-            listBody.push( <dt key={'account_' + account.accountId}>{account.name}</dt> );
-            account.containers.forEach( container => {
-                listBody.push(
-                    <dd key={'container_' + container.containerId}>
+        var sections = this.props.tagManagerAccountsAndContainers.map( account => {
+            var accountItems = account.containers.map( container => {
+                return (
+                    <li key={'container_' + container.containerId}>
                         <a href="#" onClick={this.handleOnSelect( container )}>{container.name}</a>
-                    </dd>
+                    </li>
                 );
             } );
+            return (
+                <section key={'account_' + account.accountId}>
+                    <h3>{account.name}</h3>
+                    <ul>{accountItems}</ul>
+                </section>
+            )
         } );
 
         return (
             <div className="containerSelector">
                 <main>
                     <h2>Select Google Tag Manager Container.</h2>
-                    <dl>{listBody}</dl>
+                    {sections}
                 </main>
             </div>
         );

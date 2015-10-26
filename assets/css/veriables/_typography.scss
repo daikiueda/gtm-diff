@@ -13,11 +13,3 @@ $line-height-default: $font-size-default * 1.5;
     line-height: $line-height-default * ceil( $size / $line-height-default );
   }
 }
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
-}
-//h2, h3 {
-//  font-size: 24px;
-//  line-height: $line-height-default * 2;
-//}

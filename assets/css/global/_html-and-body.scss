@@ -6,6 +6,6 @@ body {
   font-family: $font-family-default;
   @include fs( $font-size-default );
   line-height: $line-height-default;
-  color: getColor( text-default );
+  color: getColor( text );
   background: getColor( bg-canvas );
 }

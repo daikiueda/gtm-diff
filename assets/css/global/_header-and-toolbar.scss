@@ -1,8 +1,7 @@
 header {
   @include paper();
-  background: getColor( bg-frame );
-  padding: getSpace( unit ) getSpace( unit ) ( getSpace( unit ) - 1px );
-  border-bottom: border-nav();
+  background: getColor( primary );
+  padding: getSpace( unit ) getSpace( unit );
 
   @include clearFix();
 
@@ -10,14 +9,14 @@ header {
     float: left;
     margin: 0;
     @include fs( 18px );
-    color: getColor( primary );
+    color: getColor( text-inverse );
   }
 
   div.containerSwitcher {
     float: right;
     a {
       @include fs( 14px );
-      color: getColor( primary );
+      color: getColor( text-inverse );
       text-decoration: none;
       &:hover {
         text-decoration: line-through;
@@ -44,13 +43,13 @@ ul.tools {
       border-left: none;
     }
 
-    color: getColor( text-default-1 );
+    color: getColor( text );
     line-height: $line-height-default;
 
     select {
       appearance: none;
       border-radius: 0;
-      border: border-content();
+      border: solid 4px getColor( accent+1 );
       padding: 0 0.5em;
     }
   }

@@ -1,2 +1,34 @@
 div.containerSelector {
+  section {
+    @include paper();
+    background: getColor( bg-frame );
+    padding: getSpace( unit );
+    margin: 0 0 getSpace( unit );
+
+    h3 {
+      margin-top: 0;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-bottom: border-content();
+
+      li{
+        border-top: border-content();
+        padding: getSpace( half ) getSpace( unit ) * 2;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      @include fs( 16px, true );
+      color: getColor( text );
+
+      &:hover {
+        color: getColor( primary );
+      }
+    }
+  }
 }

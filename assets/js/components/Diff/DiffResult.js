@@ -25,7 +25,7 @@ export default class DiffResult extends Component {
                 return this.props.result[ type[ 0 ] ] ?
                     (
                         <section className={hasModified( this.props.result[ type[ 0 ] ] )}>
-                            <h4>{type[ 1 ]}</h4>
+                            <h2>{type[ 1 ]}</h2>
                             {type[ 2 ]( this.props.result[ type[ 0 ] ] )}
                         </section>
                     ): <div></div>

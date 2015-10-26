@@ -1,70 +1,73 @@
 div.diff {
-  main {
+  h2 {
+    //color: getColor( primary+1 );
+    margin-top: getSpace( unit ) * 3;
+  }
+  main > section:first-child h2 {
+    margin-top: 0;
+  }
+  section section {
+    @include paper();
+    background: getColor( bg-frame );
 
-    section h4 {
-      @include fs( 24px );
-    }
-    section section {
-      padding: $line-height-default;
-      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-      border-radius: 2px;
-      background: #fff;
+    padding: getSpace( unit );
 
-      h5 {
-        @include fs( 24px );
+    h3 {
+      a {
+        display: inline-block;
+        border-radius: 16px;
+        height: 32px;
+        width: 32px;
         line-height: 32px;
-
-        a {
-          display: inline-block;
-          border-radius: 16px;
-          background: #eee;
-          height: 32px;
-          width: 32px;
-          line-height: 32px;
-          text-align: center;
-          vertical-align: 2px;
-          @include fs( 16px );
-          text-decoration: none;
-        }
+        text-align: center;
+        vertical-align: 2px;
+        @include fs( 16px );
+        background: getColor( accent );
+        color: getColor( text-inverse );
+        text-decoration: none;
       }
     }
+  }
 
-    section.notModified {
-      display: none;
-    }
+  section.notModified {
+    display: none;
+  }
 
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 0 0 1em;
-      border-bottom: solid 1px rgba( 0, 0, 0, 0.12 );
-    }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 0 getSpace( unit ) * 2;
+    border-bottom: border-content();
+  }
+  th, td {
+    border-top: border-content();
+    padding: ( getSpace( half ) - 1px ) getSpace( half ) getSpace( half );
+    text-align: left;
+    word-break: break-all;
+    color: getColor( text-1 );
+  }
+  tbody td {
+    width: 40%;
+    vertical-align: top;
+  }
+  tr.modified {
     th, td {
-      border-top: solid 1px rgba( 0, 0, 0, 0.12 );
-      padding: 1em;
-      text-align: left;
-      word-break: break-all;
+      background: getColor( accent-2 );
+      color: getColor( text );
     }
-    tbody td {
-      width: 40%;
-      vertical-align: top;
+  }
+  tr.complex {
+    th, td {
+      border-top: solid 1px getColor( border-content-1 );
     }
-    tr.modified {
-      background: #ffffcc;
+    th {
+      padding-left: getSpace( unit );
+      font-weight: normal;
     }
-    tr.complex {
-      th, td {
-        border-top: solid 1px rgba(0, 0, 0, 0.05);
-      }
-      th {
-        padding-left: 3em;
-        font-weight: normal;
-      }
-      th[colspan="3"] {
-        border-top: solid 1px rgba( 0, 0, 0, 0.12 );
-        padding-left: 1em;
-        font-weight: bold;
-      }
+    th[colspan="3"] {
+      border-top: border-content();
+      padding-left: getSpace( half );
+      font-weight: bold;
     }
   }
 }
