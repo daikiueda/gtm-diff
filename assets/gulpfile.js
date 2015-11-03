@@ -44,14 +44,16 @@ var del = require( 'del' ),
     ghPages = require( 'gulp-gh-pages' );
 
 
-var b = browserify( Object.assign( {}, watchify.args, {
+var b = browserify( {
+    cache: {},
+    packageCache: {},
     debug: true,
     entries: [ SETTINGS.JS.SRC ]
-} ) );
+} );
 
 function bundleJS(){
     return b
-        .transform( 'babelify' )
+        .transform( 'babelify', { presets: [ "es2015", "react" ] } )
         .transform( 'browserify-shim', { global: true } )
         .bundle()
         .on( 'error', function( err ){
@@ -71,7 +73,7 @@ function bundleJS(){
 gulp.task( 'build:js', bundleJS );
 
 gulp.task( 'build:js:watch', function(){
-    b = watchify( b );
+    b.plugin( watchify );
     b.on( 'update', bundleJS );
     b.on( 'log', gutil.log );
     return bundleJS();
@@ -126,4 +128,4 @@ gulp.task( 'gh-pages', function(){
         .pipe( ghPages() );
 } );
 
-gulp.task( 'default', [ 'build' ] );
+gulp.task( 'default', [ 'server' ] );

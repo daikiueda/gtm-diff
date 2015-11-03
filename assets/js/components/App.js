@@ -23,9 +23,16 @@ export default class App extends Component {
     render(){
         const { dispatch } = this.props;
 
-        var content;
+        var header = (
+            <GlobalHeader
+                selectedContainer={this.props.selectedConditions.tagManagerContainer}
+                clearContainer={() => dispatch( clearTagManagerContainer() )}
+            />
+        ),
+            content;
 
         if( !this.props.isGoogleLoggedIn ){
+            header = null;
             content = (
                 <RequireGoogleLogin loginGoogle={() => {
                     dispatch( authGoogle( false ) )
@@ -61,11 +68,7 @@ export default class App extends Component {
 
         return (
             <div>
-                <GlobalHeader
-                    selectedContainer={this.props.selectedConditions.tagManagerContainer}
-                    clearContainer={() => dispatch( clearTagManagerContainer() )}
-                    />
-
+                {header}
                 {content}
             </div>
         );

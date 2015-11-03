@@ -10,6 +10,7 @@ import ReactDOM from 'react/lib/ReactDOM'; //react-domモジュールがimport�
 import { connect, Provider } from 'react-redux';
 
 
+import generateConnectMapFromStore from './utils/generateConnectMapFromStore.js';
 import reducers from './store-reducers/__combined.js';
 import AppRootView from './components/App.js';
 import GoogleCoreAPI from './api/google/GoogleCoreAPI.js';
@@ -19,7 +20,7 @@ import { initGoogleTagManagerAPI } from './actions/google-tag-manager.js';
 var store =
         applyMiddleware( createLogger( { predicate: () => __DEV__ } ), thunk )( createStore )( reducers ),
     AppRootViewConnected =
-        connect( require( './utils/generateConnectMapFromStore' )( store ) )( AppRootView );
+        connect( generateConnectMapFromStore( store ) )( AppRootView );
 
 function render(){
     ReactDOM.render(

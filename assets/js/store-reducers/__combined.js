@@ -1,12 +1,17 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers( {
-    api: require( './api.js' ),
-    isGoogleLoggedIn: require( './isGoogleLoggedIn.js' ),
-    selectedConditions: require( './selectedConditions.js' ),
-    tagManagerAccountsAndContainers: require( './tagManagerAccountsAndContainers.js' ),
-    tagManagerContainerVersions: require( './tagManagerContainerVersions.js' ),
-    diffResult: require( './diffResult' )
-} );
+import api from './api';
+import isGoogleLoggedIn from './isGoogleLoggedIn.js';
+import selectedConditions from './selectedConditions.js';
+import tagManagerAccountsAndContainers from './tagManagerAccountsAndContainers.js';
+import tagManagerContainerVersions from './tagManagerContainerVersions.js';
+import diffResult from './diffResult.js';
 
- 
+export default combineReducers( {
+    api,
+    isGoogleLoggedIn,
+    selectedConditions,
+    tagManagerAccountsAndContainers,
+    tagManagerContainerVersions,
+    diffResult
+} );
