@@ -29,10 +29,12 @@ export default class App extends Component {
                 clearContainer={() => dispatch( clearTagManagerContainer() )}
             />
         ),
+            sceneName,
             content;
 
         if( !this.props.isGoogleLoggedIn ){
             header = null;
+            sceneName = 'require-google-login';
             content = (
                 <RequireGoogleLogin loginGoogle={() => {
                     dispatch( authGoogle( false ) )
@@ -41,6 +43,7 @@ export default class App extends Component {
             );
         }
         else if( !this.props.selectedConditions.tagManagerContainer ){
+            sceneName = 'container-selector';
             content = (
                 <TagManagerContainerSelector
                     tagManagerAccountsAndContainers={this.props.tagManagerAccountsAndContainers}
@@ -49,6 +52,7 @@ export default class App extends Component {
             );
         }
         else if( this.props.tagManagerContainerVersions.length ){
+            sceneName = 'diff';
             content = (
                 <Diff
                     tagManagerContainerVersions={this.props.tagManagerContainerVersions}
@@ -67,7 +71,7 @@ export default class App extends Component {
         }
 
         return (
-            <div>
+            <div className={sceneName}>
                 {header}
                 {content}
             </div>

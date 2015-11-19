@@ -1,0 +1,41 @@
+div.require-google-login {
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 55%;
+    background-color: getColor( primary-1 );
+  }
+  &:after {
+    top: 0;
+    right: 0;
+    width: 45%;
+    background-color: getColor( accent-1 );
+  }
+
+  main {
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 2;
+    @include paper;
+    background: getColor( bg-frame );
+
+    width: 70%;
+    height: 60%;
+    top: 20%;
+    left: 15%;
+
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0;
+    @include fs( 42px, true );
+
+    em { font-style: normal }
+  }
+}

@@ -1,8 +1,10 @@
 html {
+  min-height: 100%;
   font-size: $font-size-system-default;
 }
 
 body {
+  min-height: 100%;
   font-family: $font-family-default;
   @include fs( $font-size-default );
   line-height: $line-height-default;
