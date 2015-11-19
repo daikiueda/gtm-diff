@@ -429,10 +429,12 @@ header:after, ul.tools:after {
 }
 
 html {
+  min-height: 100%;
   font-size: 16px;
 }
 
 body {
+  min-height: 100%;
   font-family: "Roboto", Arial, sans-serif;
   font-size: 14px;
   font-size: 0.875rem;
@@ -522,6 +524,48 @@ h3 {
   font-size: 1.5rem;
   line-height: 42px;
   margin: 21px 0;
+}
+
+div.require-google-login:before, div.require-google-login:after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 55%;
+  background-color: #81C784;
+}
+
+div.require-google-login:after {
+  top: 0;
+  right: 0;
+  width: 45%;
+  background-color: #80D8FF;
+}
+
+div.require-google-login main {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 2;
+  border-radius: 2px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+  background: #FFFFFF;
+  width: 70%;
+  height: 60%;
+  top: 20%;
+  left: 15%;
+  text-align: center;
+}
+
+div.require-google-login h1 {
+  margin: 0;
+  font-size: 42px;
+  font-size: 2.625rem;
+  line-height: 42px;
+}
+
+div.require-google-login h1 em {
+  font-style: normal;
 }
 
 div.containerSelector section {
