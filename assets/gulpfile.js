@@ -92,7 +92,7 @@ gulp.task( 'build:css', function(){
         .src( SETTINGS.CSS.SRC )
         .pipe( sourcemaps.init() )
         .pipe( sass( { outputStyle: 'expanded' } ).on( 'error', sass.logError ) )
-        .pipe( postcss( [ postcssImport, autoprefixer ] ) )
+        .pipe( postcss( [ postcssImport(), autoprefixer ] ) )
         .pipe( sourcemaps.write( './' ) )
         .pipe( gulp.dest( SETTINGS.CSS.DEST ) );
 } );

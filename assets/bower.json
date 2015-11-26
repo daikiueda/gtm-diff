@@ -1,7 +1,7 @@
 {
   "name": "gtm-diff",
   "dependencies": {
-    "react": "~0.14.2",
+    "react": "~0.14.3",
     "normalize-css": "normalize.css#~3.0.3"
   }
 }
