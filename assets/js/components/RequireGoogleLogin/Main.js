@@ -13,7 +13,7 @@ export default class RequireGoogleLogin extends Component {
                 <h1>Google Tag Manager <em>Diff</em></h1>
                 <p>Show changes between two versions of Google Tag Manager Container.</p>
                 <div className="login">
-                    <a href="#" onClick={this.handleOnLogin}>
+                    <a href="#" onClick={this.handleOnLogin.bind(this)}>
                         <img
                             src="./img/btn_google_signin_light_normal_web.png"
                             srcSet="./img/btn_google_signin_light_normal_web@2x.png 2x"
