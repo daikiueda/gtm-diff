@@ -526,6 +526,48 @@ h3 {
   margin: 21px 0;
 }
 
+div.loading:before, div.loading:after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 55%;
+  background-color: #81C784;
+}
+
+div.loading:after {
+  top: 0;
+  right: 0;
+  width: 45%;
+  background-color: #80D8FF;
+}
+
+div.loading main {
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 2;
+  border-radius: 2px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+  background: #FFFFFF;
+  width: 70%;
+  height: 60%;
+  top: 20%;
+  left: 15%;
+  text-align: center;
+}
+
+div.loading h1 {
+  margin: 0;
+  font-size: 42px;
+  font-size: 2.625rem;
+  line-height: 42px;
+}
+
+div.loading h1 em {
+  font-style: normal;
+}
+
 div.require-google-login:before, div.require-google-login:after {
   content: "";
   display: block;
