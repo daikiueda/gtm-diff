@@ -104,7 +104,7 @@ gulp.task( 'build:css:watch', function(){
 
 gulp.task( 'build', function( callback ){
     // ToDo: clean
-    runSequence( [ 'build:jsLibs', 'build:js' ], callback  );
+    runSequence( [ 'build:css', 'build:jsLibs', 'build:js' ], callback  );
 } );
 
 
