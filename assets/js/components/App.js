@@ -36,10 +36,9 @@ export default class App extends Component {
             header = null;
             sceneName = 'require-google-login';
             content = (
-                <RequireGoogleLogin loginGoogle={() => {
-                    dispatch( authGoogle( false ) )
-                        .then( () => dispatch( initGoogleTagManagerAPI() ) );
-                }} />
+                <RequireGoogleLogin
+                    loginGoogle={() => dispatch( authGoogle( false ) ).then( () => dispatch( initGoogleTagManagerAPI() ) )}
+                    />
             );
         }
         else if( !this.props.selectedConditions.tagManagerContainer ){
