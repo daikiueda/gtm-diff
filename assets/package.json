@@ -1,11 +1,7 @@
-{
-  "name": "gtm-diff",
   "version": "0.0.0",
   "description": "Google Tag Manager diff Diff.",
   "main": "gulp",
   "scripts": {
-    "start": "node ./node_modules/gulp/bin/gulp.js",
-    "test": "node ./node_modules/mocha/bin/mocha",
     "postinstall": "node ./node_modules/bower/bin/bower install"
   },
   "repository": {
@@ -38,8 +34,8 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.6",
-    "lodash.isequal": "^4.0.0",
-    "lodash.union": "^4.1.0",
+    "lodash.isequal": "^4.1.0",
+    "lodash.union": "^4.2.0",
     "postcss-import": "^8.0.2",
     "q": "^1.4.1",
     "react": "^0.14.7",
