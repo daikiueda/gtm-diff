@@ -61,12 +61,35 @@ export default class GoogleTagManagerAPI {
 
     fetchContainerVersions( container ){
         var { accountId, containerId } = container,
-            requestContainerVersions = this.api.accounts.containers.versions.list( { accountId, containerId } );
+            requestContainerVersions = this.api.accounts.containers.versions.list( { accountId, containerId } ),
+            requestContainerCurrentTags = this.api.accounts.containers.tags.list( { accountId, containerId } ),
+            requestContainerCurrentTriggers = this.api.accounts.containers.triggers.list( { accountId, containerId } ),
+            requestContainerCurrentVariable = this.api.accounts.containers.variables.list( { accountId, containerId } );
 
-        return Q.promise( ( resolve, reject ) => {
-            requestContainerVersions.execute( response => {
-                resolve( response.containerVersion );
+        return Q.allSettled( [
+            Q.promise( ( resolve, reject ) => {
+                requestContainerVersions.execute( response => { resolve( response.containerVersion ); } );
+            } ),
+            Q.promise( ( resolve, reject ) => {
+                requestContainerCurrentTags.execute( response => { resolve( response.tags ); } );
+            } ),
+            Q.promise( ( resolve, reject ) => {
+                requestContainerCurrentTriggers.execute( response => { resolve( response.triggers ); } );
+            } ),
+            Q.promise( ( resolve, reject ) => {
+                requestContainerCurrentVariable.execute( response => { resolve( response.variables ); } );
+            } )
+        ] )
+            .then( function( results ){
+                console.log(arguments);
+                var versions = results[0].value;
+                versions.push( {
+                    containerVersionId: 'Editing',
+                    tag: results[1].value,
+                    trigger: [],
+                    variable: []
+                } );
+                return versions;
             } );
-        } );
     }
 }
