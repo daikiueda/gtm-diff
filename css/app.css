@@ -422,6 +422,7 @@ td,
 th {
   padding: 0;
 }
+
 header:after, ul.tools:after {
   content: "";
   clear: both;
@@ -644,6 +645,11 @@ div.containerSelector section a {
 
 div.containerSelector section a:hover {
   color: #4CAF50;
+}
+
+div.containerSelector section a span.publicId {
+  display: block;
+  float: right;
 }
 
 div.diff h2 {
