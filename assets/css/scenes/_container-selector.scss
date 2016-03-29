@@ -29,6 +29,11 @@ div.containerSelector {
       &:hover {
         color: getColor( primary );
       }
+
+      span.publicId {
+        display: block;
+        float: right;
+      }
     }
   }
 }

@@ -19,7 +19,10 @@ export default class TagManagerContainerSelector extends Component {
             var accountItems = account.containers.map( container => {
                 return (
                     <li key={'container_' + container.containerId}>
-                        <a href="#" onClick={this.handleOnSelect( container )}>{container.name}</a>
+                        <a href="#" onClick={this.handleOnSelect( container )}>
+                            <span className="publicId">{container.publicId}</span>
+                            {container.name}
+                        </a>
                     </li>
                 );
             } );
