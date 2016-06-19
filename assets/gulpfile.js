@@ -1,4 +1,4 @@
-/* es */
+/* eslint "no-console": "off" */
 
 const SETTINGS = {
     JS_LIBS: {
