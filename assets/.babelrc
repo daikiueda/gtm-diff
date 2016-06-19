@@ -1,0 +1,16 @@
+{
+  "presets": ["es2015", "react"],
+  "env": {
+    "test": {
+      "plugins": [
+        "babel-plugin-espower"
+      ]
+    },
+    "test-cov": {
+      "plugins": [
+        "babel-plugin-espower",
+        ["__coverage__", {"only": "./js"}]
+      ]
+    }
+  }
+}

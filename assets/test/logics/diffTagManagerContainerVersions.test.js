@@ -1,13 +1,17 @@
-var expect = require( 'chai' ).expect;
+/* global describe, it */
 
-var diff = require( '../../js/logics/diffTagManagerContainerVersions.js' );
+import assert from 'power-assert';
 
-describe( 'diffTagManagerContainerVersions', function(){
+import diff from '../../js/logics/diffTagManagerContainerVersions.js';
 
-    it( 'テスト', function(){
-        var fixtureA = require( './fixtures/sample-01-001.json' ),
-            fixtureB = require( './fixtures/sample-01-002.json' );
+describe('logic', function() {
+    describe('diffTagManagerContainerVersions()', function() {
 
-        console.dir( diff( fixtureA, fixtureB ) );
-    } );
-} );
+        it('仮', function() {
+            var fixtureA = require('./fixtures/sample-01-001.json'),
+                fixtureB = require('./fixtures/sample-01-002.json');
+
+            assert(diff(fixtureA, fixtureB));
+        });
+    });
+});

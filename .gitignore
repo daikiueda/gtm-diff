@@ -8,6 +8,8 @@ npm-debug.log
 assets/bower_components
 assets/node_modules
 assets/.publish
+assets/.nyc_output
+assets/coverage
 
 public/js
 public/css

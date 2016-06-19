@@ -56,7 +56,7 @@ var b = browserify({
 
 function bundleJS() {
     return b
-        .transform('babelify', {presets: ['es2015', 'react']})
+        .transform('babelify')
         .transform('browserify-shim', {global: true})
         .bundle()
         .on('error', function(err) {
