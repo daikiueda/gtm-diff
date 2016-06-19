@@ -423,307 +423,94 @@ th {
   padding: 0;
 }
 
-header:after, ul.tools:after {
-  content: "";
-  clear: both;
-  display: block;
-}
+header:after,ul.tools:after{content:"";clear:both;display:block}
 
-html {
-  min-height: 100%;
-  font-size: 16px;
-}
+html{min-height:100%;font-size:16px}
 
-body {
-  min-height: 100%;
-  font-family: "Roboto", Arial, sans-serif;
-  font-size: 14px;
-  font-size: 0.875rem;
-  line-height: 21px;
-  color: rgba(0, 0, 0, 0.87);
-  background: #ECEFF1;
-}
+body{min-height:100%;font-family:"Roboto",Arial,sans-serif;font-size:14px;font-size:.875rem;line-height:21px;color:rgba(0,0,0,0.87);background:#ECEFF1}
 
-header {
-  border-radius: 2px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-  background: #4CAF50;
-  padding: 21px 21px;
-}
+header{border-radius:2px;box-shadow:0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.24);background:#4CAF50;padding:21px 21px}
 
-header h1 {
-  float: left;
-  margin: 0;
-  font-size: 18px;
-  font-size: 1.125rem;
-  color: #FFFFFF;
-}
+header h1{float:left;margin:0;font-size:18px;font-size:1.125rem;color:#fff}
 
-header div.containerSwitcher {
-  float: right;
-}
+header div.containerSwitcher{float:right}
 
-header div.containerSwitcher a {
-  font-size: 14px;
-  font-size: 0.875rem;
-  color: #FFFFFF;
-  text-decoration: none;
-}
+header div.containerSwitcher a{font-size:14px;font-size:.875rem;color:#fff;text-decoration:none}
 
-header div.containerSwitcher a:hover {
-  text-decoration: line-through;
-}
+header div.containerSwitcher a:hover{text-decoration:line-through}
 
-ul.tools {
-  list-style: none;
-  margin: 0;
-  padding: 10.5px 21px;
-  background: #FFFFFF;
-  border-radius: 2px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-}
+ul.tools{list-style:none;margin:0;padding:10.5px 21px;background:#fff;border-radius:2px;box-shadow:0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.24)}
 
-ul.tools li {
-  float: left;
-  padding: 0 10.5px;
-  border-left: solid 1px #E1E1E1;
-  color: rgba(0, 0, 0, 0.87);
-  line-height: 21px;
-}
+ul.tools li{float:left;padding:0 10.5px;border-left:solid 1px #E1E1E1;color:rgba(0,0,0,0.87);line-height:21px}
 
-ul.tools li:first-child {
-  padding-left: 0;
-  border-left: none;
-}
+ul.tools li:first-child{padding-left:0;border-left:none}
 
-ul.tools li select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border-radius: 0;
-  border: solid 4px #00B0FF;
-  padding: 0 0.5em;
-}
+ul.tools li select{-webkit-appearance:none;-moz-appearance:none;appearance:none;border-radius:0;border:solid 4px #00B0FF;padding:0 0.5em}
 
-main {
-  padding: 21px 42px;
-}
+main{padding:21px 42px}
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
-}
+h1,h2,h3,h4,h5,h6{font-weight:normal}
 
-h2 {
-  font-size: 28px;
-  font-size: 1.75rem;
-  line-height: 42px;
-  margin: 21px 0;
-}
+h2{font-size:28px;font-size:1.75rem;line-height:42px;margin:21px 0}
 
-h3 {
-  font-size: 24px;
-  font-size: 1.5rem;
-  line-height: 42px;
-  margin: 21px 0;
-}
+h3{font-size:24px;font-size:1.5rem;line-height:42px;margin:21px 0}
 
-div.loading:before, div.loading:after {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: 1;
-  height: 100%;
-  width: 55%;
-  background-color: #81C784;
-}
+div.loading:before,div.loading:after{content:"";display:block;position:absolute;z-index:1;height:100%;width:55%;background-color:#81C784}
 
-div.loading:after {
-  top: 0;
-  right: 0;
-  width: 45%;
-  background-color: #80D8FF;
-}
+div.loading:after{top:0;right:0;width:45%;background-color:#80D8FF}
 
-div.loading main {
-  box-sizing: border-box;
-  position: absolute;
-  z-index: 2;
-  border-radius: 2px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-  background: #FFFFFF;
-  width: 70%;
-  height: 60%;
-  top: 20%;
-  left: 15%;
-  text-align: center;
-}
+div.loading main{box-sizing:border-box;position:absolute;z-index:2;border-radius:2px;box-shadow:0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.24);background:#fff;width:70%;height:60%;top:20%;left:15%;text-align:center}
 
-div.loading h1 {
-  margin: 0;
-  font-size: 42px;
-  font-size: 2.625rem;
-  line-height: 42px;
-}
+div.loading h1{margin:0;font-size:42px;font-size:2.625rem;line-height:42px}
 
-div.loading h1 em {
-  font-style: normal;
-}
+div.loading h1 em{font-style:normal}
 
-div.require-google-login:before, div.require-google-login:after {
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: 1;
-  height: 100%;
-  width: 55%;
-  background-color: #81C784;
-}
+div.require-google-login:before,div.require-google-login:after{content:"";display:block;position:absolute;z-index:1;height:100%;width:55%;background-color:#81C784}
 
-div.require-google-login:after {
-  top: 0;
-  right: 0;
-  width: 45%;
-  background-color: #80D8FF;
-}
+div.require-google-login:after{top:0;right:0;width:45%;background-color:#80D8FF}
 
-div.require-google-login main {
-  box-sizing: border-box;
-  position: absolute;
-  z-index: 2;
-  border-radius: 2px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-  background: #FFFFFF;
-  width: 70%;
-  height: 60%;
-  top: 20%;
-  left: 15%;
-  text-align: center;
-}
+div.require-google-login main{box-sizing:border-box;position:absolute;z-index:2;border-radius:2px;box-shadow:0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.24);background:#fff;width:70%;height:60%;top:20%;left:15%;text-align:center}
 
-div.require-google-login h1 {
-  margin: 0;
-  font-size: 42px;
-  font-size: 2.625rem;
-  line-height: 42px;
-}
+div.require-google-login h1{margin:0;font-size:42px;font-size:2.625rem;line-height:42px}
 
-div.require-google-login h1 em {
-  font-style: normal;
-}
+div.require-google-login h1 em{font-style:normal}
 
-div.containerSelector section {
-  border-radius: 2px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-  background: #FFFFFF;
-  padding: 21px;
-  margin: 0 0 21px;
-}
+div.containerSelector section{border-radius:2px;box-shadow:0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.24);background:#fff;padding:21px;margin:0 0 21px}
 
-div.containerSelector section h3 {
-  margin-top: 0;
-}
+div.containerSelector section h3{margin-top:0}
 
-div.containerSelector section ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-bottom: solid 1px #DADADA;
-}
+div.containerSelector section ul{list-style:none;margin:0;padding:0;border-bottom:solid 1px #DADADA}
 
-div.containerSelector section ul li {
-  border-top: solid 1px #DADADA;
-  padding: 10.5px 42px;
-}
+div.containerSelector section ul li{border-top:solid 1px #DADADA;padding:10.5px 42px}
 
-div.containerSelector section a {
-  text-decoration: none;
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 21px;
-  color: rgba(0, 0, 0, 0.87);
-}
+div.containerSelector section a{text-decoration:none;font-size:16px;font-size:1rem;line-height:21px;color:rgba(0,0,0,0.87)}
 
-div.containerSelector section a:hover {
-  color: #4CAF50;
-}
+div.containerSelector section a:hover{color:#4CAF50}
 
-div.containerSelector section a span.publicId {
-  display: block;
-  float: right;
-}
+div.containerSelector section a span.publicId{display:block;float:right}
 
-div.diff h2 {
-  margin-top: 63px;
-}
+div.diff h2{margin-top:63px}
 
-div.diff main > section:first-child h2 {
-  margin-top: 0;
-}
+div.diff main>section:first-child h2{margin-top:0}
 
-div.diff section section {
-  border-radius: 2px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-  background: #FFFFFF;
-  padding: 21px;
-}
+div.diff section section{border-radius:2px;box-shadow:0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.24);background:#fff;padding:21px}
 
-div.diff section section h3 a {
-  display: inline-block;
-  border-radius: 16px;
-  height: 32px;
-  width: 32px;
-  line-height: 32px;
-  text-align: center;
-  vertical-align: 2px;
-  font-size: 16px;
-  font-size: 1rem;
-  background: #40C4FF;
-  color: #FFFFFF;
-  text-decoration: none;
-}
+div.diff section section h3 a{display:inline-block;border-radius:16px;height:32px;width:32px;line-height:32px;text-align:center;vertical-align:2px;font-size:16px;font-size:1rem;background:#40C4FF;color:#fff;text-decoration:none}
 
-div.diff section.notModified {
-  display: none;
-}
+div.diff section.notModified{display:none}
 
-div.diff table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 0 0 42px;
-  border-bottom: solid 1px #DADADA;
-}
+div.diff table{border-collapse:collapse;width:100%;margin:0 0 42px;border-bottom:solid 1px #DADADA}
 
-div.diff th, div.diff td {
-  border-top: solid 1px #DADADA;
-  padding: 9.5px 10.5px 10.5px;
-  text-align: left;
-  word-break: break-all;
-  color: rgba(0, 0, 0, 0.54);
-}
+div.diff th,div.diff td{border-top:solid 1px #DADADA;padding:9.5px 10.5px 10.5px;text-align:left;word-break:break-all;color:rgba(0,0,0,0.54)}
 
-div.diff tbody td {
-  width: 40%;
-  vertical-align: top;
-}
+div.diff tbody td{width:40%;vertical-align:top}
 
-div.diff tr.modified th, div.diff tr.modified td {
-  background: #E1F5FE;
-  color: rgba(0, 0, 0, 0.87);
-}
+div.diff tr.modified th,div.diff tr.modified td{background:#E1F5FE;color:rgba(0,0,0,0.87)}
 
-div.diff tr.complex th, div.diff tr.complex td {
-  border-top: solid 1px #E1E1E1;
-}
+div.diff tr.complex th,div.diff tr.complex td{border-top:solid 1px #E1E1E1}
 
-div.diff tr.complex th {
-  padding-left: 21px;
-  font-weight: normal;
-}
+div.diff tr.complex th{padding-left:21px;font-weight:normal}
 
-div.diff tr.complex th[colspan="3"] {
-  border-top: solid 1px #DADADA;
-  padding-left: 10.5px;
-  font-weight: bold;
-}
+div.diff tr.complex th[colspan="3"]{border-top:solid 1px #DADADA;padding-left:10.5px;font-weight:bold}
 
 /*# sourceMappingURL=app.css.map */
