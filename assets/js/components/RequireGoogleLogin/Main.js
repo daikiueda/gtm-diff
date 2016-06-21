@@ -1,13 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 
 export default class RequireGoogleLogin extends Component {
 
-    handleOnLogin( e ){
+    handleOnLogin(e) {
         e.preventDefault();
         this.props.loginGoogle();
     }
 
-    render(){
+    render() {
         return (
             <main>
                 <h1>Google Tag Manager <em>Diff</em></h1>

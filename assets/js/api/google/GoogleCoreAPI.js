@@ -5,39 +5,39 @@ import setGlobalCallback from '../../utils/setGlobalCallback.js';
 import loadScriptAsync from '../../utils/loadScriptAsync.js';
 
 export default class GoogleAPI {
-    constructor( credential ){
+    constructor(credential) {
         this.gapi = null;
         this.credential = credential;
     }
 
-    init(){
-        return Q.Promise( ( resolve, reject ) => {
-            loadScriptAsync( [
+    init() {
+        return Q.Promise((resolve, reject) => {
+            loadScriptAsync([
                 GOOGLE_LIB_URL,
-                setGlobalCallback( function(){
+                setGlobalCallback(function() {
                     this.gapi = window.gapi;
-                    resolve( this );
-                }.bind( this ) )
-            ].join( '' ) );
-        } );
+                    resolve(this);
+                }.bind(this))
+            ].join(''));
+        });
     }
 
-    auth( immediate ){
-        return Q.Promise( ( resolve, reject ) => {
+    auth(immediate) {
+        return Q.Promise((resolve, reject) => {
             this.gapi.auth.authorize(
-                Object.assign( { immediate: immediate }, this.credential ),
-                function( result ){
-                    if( result.error ){
-                        reject( new Error( result.error_subtype ) );
+                Object.assign({immediate: immediate}, this.credential),
+                function(result) {
+                    if (result.error) {
+                        reject(new Error(result.error_subtype));
                         return;
                     }
                     resolve();
                 }
             );
-        } );
+        });
     }
 
-    signOut(){
+    signOut() {
         this.gapi.auth.signOut();
     }
 }

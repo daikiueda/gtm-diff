@@ -1,17 +1,17 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 
 export default class GlobalHeader extends Component {
 
-    handleOnClear( e ){
+    handleOnClear(e) {
         e.preventDefault();
         this.props.clearContainer();
     }
 
-    render(){
+    render() {
         var containerSwitcher = this.props.selectedContainer &&
             (
                 <div className="containerSwitcher">
-                    <a href="#" onClick={this.handleOnClear.bind( this )}>
+                    <a href="#" onClick={this.handleOnClear.bind(this)}>
                         {this.props.selectedContainer.accountName}
                         &nbsp;/&nbsp;
                         {this.props.selectedContainer.name}
