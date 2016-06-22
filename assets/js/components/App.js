@@ -1,14 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 
 import GlobalHeader from './GlobalHeader.js';
 import RequireGoogleLogin from './RequireGoogleLogin/Main.js';
 import TagManagerContainerSelector from './ContainerSelector/Main.js';
 import Diff from './Diff/Main.js';
 
-import {
-    authGoogle,
-    signOutFromGoogle
-} from '../actions/google-core.js';
+import {authGoogle} from '../actions/google-core.js';
+
 import {
     initGoogleTagManagerAPI,
     selectTagManagerContainer,
@@ -20,37 +18,37 @@ import {
 
 
 export default class App extends Component {
-    render(){
-        const { dispatch } = this.props;
+    render() {
+        const {dispatch} = this.props;
 
         var header = (
             <GlobalHeader
                 selectedContainer={this.props.selectedConditions.tagManagerContainer}
-                clearContainer={() => dispatch( clearTagManagerContainer() )}
+                clearContainer={() => dispatch(clearTagManagerContainer())}
             />
         ),
             sceneName,
             content;
 
-        if( !this.props.isGoogleLoggedIn ){
+        if (!this.props.isGoogleLoggedIn) {
             header = null;
             sceneName = 'require-google-login';
             content = (
                 <RequireGoogleLogin
-                    loginGoogle={() => dispatch( authGoogle( false ) ).then( () => dispatch( initGoogleTagManagerAPI() ) )}
+                    loginGoogle={() => dispatch(authGoogle(false)).then(() => dispatch(initGoogleTagManagerAPI()))}
                     />
             );
         }
-        else if( !this.props.selectedConditions.tagManagerContainer ){
+        else if (!this.props.selectedConditions.tagManagerContainer) {
             sceneName = 'container-selector';
             content = (
                 <TagManagerContainerSelector
                     tagManagerAccountsAndContainers={this.props.tagManagerAccountsAndContainers}
-                    selectContainer={( container ) => dispatch( selectTagManagerContainer( container ) )}
+                    selectContainer={(container) => dispatch(selectTagManagerContainer(container))}
                     />
             );
         }
-        else if( this.props.tagManagerContainerVersions.length ){
+        else if (this.props.tagManagerContainerVersions.length) {
             sceneName = 'diff';
             content = (
                 <Diff
@@ -63,7 +61,7 @@ export default class App extends Component {
                         SET_TAG_MANAGER_CONTAINER_VERSION_AT_LEFT,
                         SET_TAG_MANAGER_CONTAINER_VERSION_AT_RIGHT
                     ] }
-                    selectVersion={( version, role ) => dispatch( selectTagManagerContainerVersion( version, role ) )}
+                    selectVersion={(version, role) => dispatch(selectTagManagerContainerVersion(version, role))}
                     result={this.props.diffResult}
                     />
             );
