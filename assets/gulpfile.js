@@ -1,25 +1,26 @@
 /* eslint "no-console": "off" */
 
-const SETTINGS = {
-    JS_LIBS: {
-        SRC: [
-            './bower_components/react/react.js',
-            './bower_components/react/react-dom.js'
-        ],
-        DEST: '../public/js',
-        FILENAME: 'libs.js'
-    },
-    JS: {
-        SRC: './js/app.js',
-        DEST: '../public/js',
-        FILENAME: 'app.js'
-    },
+const isProduction = process.env.NODE_ENV === 'production',
+    SETTINGS = {
+        JS_LIBS: {
+                SRC: [
+                    `./bower_components/react/react${isProduction ? '.min' : ''}.js`,
+                    `./bower_components/react/react-dom${isProduction ? '.min' : ''}.js`
+                ],
+                DEST: '../public/js',
+                FILENAME: 'libs.js'
+            },
+            JS: {
+                SRC: './js/app.js',
+                DEST: '../public/js',
+                FILENAME: 'app.js'
+            },
 
-    CSS: {
-        SRC: './css/**/*.scss',
-        DEST: '../public/css'
-    }
-};
+            CSS: {
+                SRC: './css/**/*.scss',
+                DEST: '../public/css'
+            }
+        };
 
 
 var del = require('del'),
@@ -28,12 +29,14 @@ var del = require('del'),
 
     gulp = require('gulp'),
     gutil = require('gulp-util'),
+    ifElse = require('gulp-if-else'),
     runSequence = require('run-sequence'),
 
     sourcemaps = require('gulp-sourcemaps'),
     plumber = require('gulp-plumber'),
 
     browserify = require('browserify'),
+    envify = require('envify'),
     watchify = require('watchify'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
@@ -56,6 +59,7 @@ var b = browserify({
 
 function bundleJS() {
     return b
+        .transform('envify')
         .transform('babelify')
         .transform('browserify-shim', {global: true})
         .bundle()
@@ -68,7 +72,7 @@ function bundleJS() {
         .pipe(source(SETTINGS.JS.FILENAME))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
+        .pipe(ifElse(isProduction, uglify))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(SETTINGS.JS.DEST));
 }
@@ -84,7 +88,7 @@ gulp.task('build:js:watch', function() {
 
 gulp.task('build:jsLibs', function() {
     gulp.src(SETTINGS.JS_LIBS.SRC)
-        .pipe(uglify())
+        .pipe(ifElse(isProduction, uglify))
         .pipe(concat(SETTINGS.JS_LIBS.FILENAME))
         .pipe(gulp.dest(SETTINGS.JS_LIBS.DEST));
 });
@@ -145,7 +149,12 @@ gulp.task('server', function(callback) {
     );
 });
 
-gulp.task('gh-pages', function() {
+gulp.task('deploy', ['build'], function() {
+    if (!isProduction) {
+        let msg = 'deploy-task runs only with NODE_ENV=production.';
+        throw new gutil.PluginError('deploy-task', msg);
+    }
+
     return gulp.src('../public/**/*')
         .pipe(ghPages());
 });
