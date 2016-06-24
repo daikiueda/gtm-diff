@@ -31,7 +31,8 @@ function render() {
 }
 
 store.dispatch(loadGoogleCoreAPI(new GoogleCoreAPI(GOOGLE_API_CREDENTIAL)))
-    .then(() => store.dispatch(authGoogle(true)))
+    .then(() => store.dispatch(authGoogle(true)) 
     .then(() => store.dispatch(initGoogleTagManagerAPI()))
-    .fin(render);
+    .then(render)
+    .catch(() => {console.log(arguments);});
 

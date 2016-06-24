@@ -1,0 +1,24 @@
+---
+  extends:
+    - eslint:recommended
+  env:
+    node: true
+    browser: true
+    es6: true
+  parserOptions:
+    ecmaVersion: 6
+    sourceType: "module"
+    ecmaFeatures:
+      jsx: true
+  rules:
+    semi: 2
+    quotes: [2, single]
+    block-spacing: [1, never]
+    keyword-spacing: 1
+    object-curly-spacing: 1
+    array-bracket-spacing: 1
+    space-before-blocks: 1
+    space-in-parens: 1
+    space-infix-ops: 1
+    space-unary-ops: 1
+    spaced-comment: 1
