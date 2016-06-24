@@ -1,7 +1,6 @@
 const GOOGLE_LIB_URL = 'https://apis.google.com/js/client.js?onload=';
 
-import Q from 'q';
-import setGlobalCallback from '../../utils/setGlobalCallback.js';
+import GlobalCallbackUtil from '../../utils/GlobalCallbackUtil.js';
 import loadScriptAsync from '../../utils/loadScriptAsync.js';
 
 export default class GoogleAPI {
@@ -11,19 +10,28 @@ export default class GoogleAPI {
     }
 
     init() {
-        return Q.Promise((resolve, reject) => {
-            loadScriptAsync([
-                GOOGLE_LIB_URL,
-                setGlobalCallback(function() {
+        return new Promise((resolve, reject) => {
+            const globalCallbackUtil = new GlobalCallbackUtil(),
+
+                callbackFunc = () => {
                     this.gapi = window.gapi;
+                    clearTimeout(timer);
                     resolve(this);
-                }.bind(this))
-            ].join(''));
+                },
+
+                callbackName = globalCallbackUtil.add(callbackFunc);
+
+            let timer = setTimeout(() => {
+                globalCallbackUtil.remove(callbackFunc);
+                reject(new Error('Google client library loading timed out.'));
+            }, 10000);
+
+            loadScriptAsync(`${GOOGLE_LIB_URL}${callbackName}`);
         });
     }
 
     auth(immediate) {
-        return Q.Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.gapi.auth.authorize(
                 Object.assign({immediate: immediate}, this.credential),
                 function(result) {

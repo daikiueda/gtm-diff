@@ -13,7 +13,7 @@ export function authGoogle(immediate) {
     return function(dispatch, getState) {
         return getState().api.googleCore.auth(immediate)
             .then(() => dispatch({type: AUTH_GOOGLE, authorized: true}))
-            .fail(() => dispatch({type: AUTH_GOOGLE, authorized: false}));
+            .catch(() => dispatch({type: AUTH_GOOGLE, authorized: false}));
     };
 }
 
