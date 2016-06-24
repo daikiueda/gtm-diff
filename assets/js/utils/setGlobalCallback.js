@@ -8,7 +8,7 @@ const GLOBAL_FUNCTION_PREFIX = '__APP_CALLBACK__';
  * @return {string} 関数名
  */
 export default function setupGlobalCallBack(func) {
-    var callbackName = GLOBAL_FUNCTION_PREFIX + (new Date()).getTime();
+    var callbackName = GLOBAL_FUNCTION_PREFIX + (new Date()).getTime() + '-' + Math.random().toString(36).substring(5);
     window[callbackName] = function() {
         func();
         delete window[callbackName];
