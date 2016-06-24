@@ -1,4 +1,4 @@
-const GLOBAL_FUNCTION_PREFIX = '__APP_CALLBACK__';
+const PREFIX = '__APP_CALLBACK__';
 
 /**
  * グローバルスコープ（window）に任意の関数オブジェクトを配置する。
@@ -8,7 +8,9 @@ const GLOBAL_FUNCTION_PREFIX = '__APP_CALLBACK__';
  * @return {string} 関数名
  */
 export default function setupGlobalCallBack(func) {
-    var callbackName = GLOBAL_FUNCTION_PREFIX + (new Date()).getTime() + '-' + Math.random().toString(36).substring(5);
+    const callbackName =
+        `${PREFIX}${1 * new Date()}-${Math.random().toString(36).substring(5)}`;
+
     window[callbackName] = function() {
         func();
         delete window[callbackName];
