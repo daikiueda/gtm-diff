@@ -36,7 +36,6 @@ var del = require('del'),
     plumber = require('gulp-plumber'),
 
     browserify = require('browserify'),
-    envify = require('envify'),
     watchify = require('watchify'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
