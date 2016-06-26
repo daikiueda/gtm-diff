@@ -3,24 +3,24 @@
 const isProduction = process.env.NODE_ENV === 'production',
     SETTINGS = {
         JS_LIBS: {
-                SRC: [
-                    `./bower_components/react/react${isProduction ? '.min' : ''}.js`,
-                    `./bower_components/react/react-dom${isProduction ? '.min' : ''}.js`
-                ],
-                DEST: '../public/js',
-                FILENAME: 'libs.js'
-            },
-            JS: {
-                SRC: './js/app.js',
-                DEST: '../public/js',
-                FILENAME: 'app.js'
-            },
+            SRC: [
+                `./bower_components/react/react${isProduction ? '.min' : ''}.js`,
+                `./bower_components/react/react-dom${isProduction ? '.min' : ''}.js`
+            ],
+            DEST: '../public/js',
+            FILENAME: 'libs.js'
+        },
+        JS: {
+            SRC: './js/app.js',
+            DEST: '../public/js',
+            FILENAME: 'app.js'
+        },
 
-            CSS: {
-                SRC: './css/**/*.scss',
-                DEST: '../public/css'
-            }
-        };
+        CSS: {
+            SRC: './css/**/*.scss',
+            DEST: '../public/css'
+        }
+    };
 
 
 var del = require('del'),
